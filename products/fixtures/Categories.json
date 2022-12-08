@@ -1,0 +1,634 @@
+ [
+  {
+   "pk": 1,
+   "model": "products.category",
+   "fields": {
+    "name": "POP!"
+   }
+   
+ },
+ {
+   "pk": 2,
+   "model": "products.category",
+   "fields": {
+    "name": "Travel Totes"
+   }
+   
+ },
+ {
+   "pk": 3,
+   "model": "products.category",
+   "fields": {
+    "name": "Scooters & Ride On Toys"
+
+   }
+ },
+ {
+   "pk": 4,
+   "model": "products.category",
+   "fields": {
+    "name": "Wall Art"
+
+   }
+ },
+ {
+   "pk": 5,
+   "model": "products.category",
+   "fields": {
+    "name": "T-Shirts"
+
+   }
+ },
+ {
+   "pk": 6,
+   "model": "products.category",
+   "fields": {
+    "name": "Arts & Crafts"
+
+   }
+ },
+ {
+   "pk": 7,
+   "model": "products.category",
+   "fields": {
+    "name": "Figures"
+
+   }
+ },
+ {
+   "pk": 8,
+   "model": "products.category",
+   "fields": {
+    "name": "PlayStation 5"
+
+   }
+ },
+ {
+   "pk": 9,
+   "model": "products.category",
+   "fields": {
+    "name": "Learning Toys"
+
+   }
+ },
+ {
+   "pk": 10,
+   "model": "products.category",
+   "fields": {
+    "name": "Dreamcast"
+
+   }
+ },
+ {
+   "pk": 11,
+   "model": "products.category",
+   "fields": {
+    "name": "Board Games"
+
+   }
+ },
+ {
+   "pk": 12,
+   "model": "products.category",
+   "fields": {
+    "name": "Xbox Series X|S"
+
+   }
+ },
+ {
+   "pk": 13,
+   "model": "products.category",
+   "fields": {
+    "name": "Model Kits"
+   }
+   
+ },
+ {
+   "pk": 14,
+   "model": "products.category",
+   "fields": {
+    "name": "Virtual Currency"
+   }
+   
+ },
+ {
+   "pk": 15,
+   "model": "products.category",
+   "fields": {
+    "name": "Xbox One"
+   }
+   
+ },
+ {
+   "pk": 16,
+   "model": "products.category",
+   "fields": {
+    "name": "Jackets & Outerwear"
+   }
+   
+ },
+ {
+   "pk": 17,
+   "model": "products.category",
+   "fields": {
+    "name": "Xbox 360"
+   }
+   
+ },
+ {
+   "pk": 18,
+   "model": "products.category",
+   "fields": {
+    "name": "Backpacks"
+   }
+   
+ },
+ {
+   "pk": 19,
+   "model": "products.category",
+   "fields": {
+    "name": "Trading Cards"
+   }
+  
+ },
+ {
+   "pk": 20,
+   "model": "products.category",
+   "fields": {
+    "name": "Statues"
+   }
+  
+ },
+ {
+   "pk": 21,
+   "model": "products.category",
+   "fields": {
+    "name": "PC Games"
+   }
+   
+ },
+ {
+   "pk": 22,
+   "model": "products.category",
+   "fields": {
+    "name": "NDS"
+   }
+   
+ },
+ {
+   "pk": 23,
+   "model": "products.category",
+   "fields": {
+    "name": "Puzzles"
+   }
+   
+ },
+ {
+   "pk": 24,
+   "model": "products.category",
+   "fields": {
+    "name": "Replicas"
+   }
+  
+ },
+ {
+   "pk": 25,
+   "model": "products.category",
+   "fields": {
+    "name": "Nintendo Switch"
+   }
+   
+ },
+ {
+   "pk": 26,
+   "model": "products.category",
+   "fields": {
+    "name": "PlayStation 4"
+   }
+   
+ },
+ {
+   "pk": 27,
+   "model": "products.category",
+   "fields": {
+    "name": "hasbro2021pulsecon"
+   }
+   
+ },
+ {
+   "pk": 28,
+   "model": "products.category",
+   "fields": {
+    "name": "Games"
+   }
+   
+ },
+ {
+   "pk": 29,
+   "model": "products.category",
+   "fields": {
+    "name": "Smart Watches"
+   }
+   
+ },
+ {
+   "pk": 30,
+   "model": "products.category",
+   "fields": {
+    "name": "Playsets"
+   }
+   
+ },
+ {
+   "pk": 31,
+   "model": "products.category",
+   "fields": {
+    "name": "Socks & Hosiery"
+   }
+   
+ },
+ {
+   "pk": 32,
+   "model": "products.category",
+   "fields": {
+    "name": "Cases & Storage"
+   }
+   
+ },
+ {
+   "pk": 33,
+   "model": "products.category",
+   "fields": {
+    "name": "Mounts & Stands"
+   }
+   
+ },
+ {
+   "pk": 34,
+   "model": "products.category",
+   "fields": {
+    "name": "Tablets"
+   }
+   
+ },
+ {
+   "pk": 35,
+   "model": "products.category",
+   "fields": {
+    "name": "Arcade"
+   }
+   
+ },
+ {
+   "pk": 36,
+   "model": "products.category",
+   "fields": {
+    "name": "Accessories"
+   }
+   
+ },
+ {
+   "pk": 37,
+   "model": "products.category",
+   "fields": {
+    "name": "3DS"
+   }
+   
+ },
+ {
+   "pk": 38,
+   "model": "products.category",
+   "fields": {
+    "name": "Keyboards"
+   }
+   
+ },
+ {
+   "pk": 39,
+   "model": "products.category",
+   "fields": {
+    "name": "Super Nintendo Entertainment System"
+   }
+   
+ },
+ {
+   "pk": 40,
+   "model": "products.category",
+   "fields": {
+    "name": "Music"
+   }
+   
+ },
+ {
+   "pk": 41,
+   "model": "products.category",
+   "fields": {
+    "name": "Batteries & Battery Packs"
+   }
+   
+ },
+ {
+   "pk": 42,
+   "model": "products.category",
+   "fields": {
+    "name": "PC Headsets"
+   }
+   
+ },
+ {
+   "pk": 43,
+   "model": "products.category",
+   "fields": {
+    "name": "Nintendo Entertainment System"
+   }
+   
+ },
+ {
+   "pk": 44,
+   "model": "products.category",
+   "fields": {
+    "name": "PlayStation 3"
+   }
+   
+ },
+ {
+   "pk": 45,
+   "model": "products.category",
+   "fields": {
+    "name": "Wii"
+   }
+   
+ },
+ {
+   "pk": 46,
+   "model": "products.category",
+   "fields": {
+    "name": "NERF"
+   }
+  
+ },
+ {
+   "pk": 47,
+   "model": "products.category",
+   "fields": {
+    "name": "Throws & Blankets"
+   }
+   
+ },
+ {
+   "pk": 48,
+   "model": "products.category",
+   "fields": {
+    "name": "Stuffed Animals & Plush"
+   }
+   
+ },
+ {
+   "pk": 49,
+   "model": "products.category",
+   "fields": {
+    "name": "Outdoors"
+   }
+   
+ },
+ {
+   "pk": 50,
+   "model": "products.category",
+   "fields": {
+    "name": "Pretend Play Toys"
+   }
+   
+ },
+ {
+   "pk": 51,
+   "model": "products.category",
+   "fields": {
+    "name": "Monitors"
+   }
+   
+ },
+ {
+   "pk": 52,
+   "model": "products.category",
+   "fields": {
+    "name": "Card Games"
+   }
+   
+ },
+ {
+   "pk": 53,
+   "model": "products.category",
+   "fields": {
+    "name": "Ticket Collections"
+   }
+  
+ },
+ {
+   "pk": 54,
+   "model": "products.category",
+   "fields": {
+    "name": "Nintendo 64"
+   }
+   
+ },
+ {
+   "pk": 55,
+   "model": "products.category",
+   "fields": {
+    "name": "Costumes"
+   }
+   
+ },
+ {
+   "pk": 56,
+   "model": "products.category",
+   "fields": {
+    "name": "Bedding"
+   }
+   
+ },
+ {
+   "pk": 57,
+   "model": "products.category",
+   "fields": {
+    "name": "Blind Bags"
+   }
+   
+ },
+ {
+   "pk": 58,
+   "model": "products.category",
+   "fields": {
+    "name": "Nintendo Switch Amiibo"
+   }
+   
+ },
+ {
+   "pk": 59,
+   "model": "products.category",
+   "fields": {
+    "name": "microSD Cards"
+   }
+   
+ },
+ {
+   "pk": 60,
+   "model": "products.category",
+   "fields": {
+    "name": "PlayStation 2"
+   }
+   
+ },
+ {
+   "pk": 61,
+   "model": "products.category",
+   "fields": {
+    "name": "Outdoor Toys & Games"
+   }
+   
+ },
+ {
+   "pk": 62,
+   "model": "products.category",
+   "fields": {
+    "name": "Key Chains & Pins"
+   }
+   
+ },
+ {
+   "pk": 63,
+   "model": "products.category",
+   "fields": {
+    "name": "Batteries & Chargers"
+   }
+   
+ },
+ {
+   "pk": 64,
+   "model": "products.category",
+   "fields": {
+    "name": "Cables & Adapters"
+   }
+   
+ },
+ {
+   "pk": 65,
+   "model": "products.category",
+   "fields": {
+    "name": "Sound Cards"
+   }
+   
+ },
+ {
+   "pk": 66,
+   "model": "products.category",
+   "fields": {
+    "name": "Coins"
+   }
+   
+ },
+ {
+   "pk": 67,
+   "model": "products.category",
+   "fields": {
+    "name": "Third Party Gift Cards"
+   }
+   
+ },
+ {
+   "pk": 68,
+   "model": "products.category",
+   "fields": {
+    "name": "Drones"
+   }
+   
+ },
+ {
+   "pk": 69,
+   "model": "products.category",
+   "fields": {
+    "name": "Men's T-Shirts"
+   }
+  
+ },
+ {
+   "pk": 70,
+   "model": "products.category",
+   "fields": {
+    "name": "PlayStation"
+   }
+   
+ },
+ {
+   "pk": 71,
+   "model": "products.category",
+   "fields": {
+    "name": "PC"
+   }
+   
+ },
+ {
+   "pk": 72,
+   "model": "products.category",
+   "fields": {
+    "name": "Pins"
+   }
+   
+ },
+ {
+   "pk": 73,
+   "model": "products.category",
+   "fields": {
+    "name": "Laptop Bags"
+   }
+   
+ },
+ {
+   "pk": 74,
+   "model": "products.category",
+   "fields": {
+    "name": "Cables & Interconnects"
+   }
+   
+ },
+ {
+   "pk": 75,
+   "model": "products.category",
+   "fields": {
+    "name": "Drinkware"
+   }
+   
+ },
+ {
+   "pk": 76,
+   "model": "products.category",
+   "fields": {
+    "name": "Chargers & Power Adapters"
+   }
+  
+ },
+ {
+   "pk": 77,
+   "model": "products.category",
+   "fields": {
+    "name": "Jewelry"
+   }
+  
+ },
+ {
+   "pk": 78,
+   "model": "products.category",
+   "fields": {
+    "name": "TV Accessories"
+   }
+   
+ },
+ {
+   "pk": 79,
+   "model": "products.category",
+   "fields": {
+    "name": "Sunglasses & Eyewear"
+   }
+   
+  }
+]
