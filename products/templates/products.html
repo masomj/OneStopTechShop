@@ -1,39 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<div class="container">
 
-<div class="row">
-    {% for product in products %}
-    <div class="sol-sm-6 col-md-6 col-lg-4">
-        <div class="card h-100 border-0">
-
-            {% if product.images %}
-            <a href="#">
-                <img src="{{product.images.url}}" alt="{{ product.name }}" class="card-img-top img-fluid">
-            </a>
-            {% else %}
-
-            {% endif %}
-            <div class="card-body pb-0">
-                <p class="mb-0">{{product.title}}</p>
-            </div>
-            <div class="card-footer">
-                <p class="lead mb-0 text-left font-weight-bold">£{{product.price}}</p>
-
-                product category
-
-                {% if product.average_rating%}
-                    <small class="text-muted"><i class="fas fa-star mr-1"></i>{{product.average_rating}} / 5</small>
-                {% elif product.average_rating == 0 %}
-                    <small class="text-muted">No Rating</small>
+    <div class="row w-100">
+        {% for product in products %}
+        <div class="sol-sm-6 col-md-6 col-lg-4 mt-3">
+            <div class="card  h-100 border-1 bg-light">
+                {% if product.images %}
+                <a href="#">
+                    <img src="{{product.images}}" alt="{{ product.name }}" class="card-img-top img-fluid">
+                </a>
+                {% else %}
+    
                 {% endif %}
-
+                <div class="card-body pb-0">
+                    <p class="mb-0">{{product.title}}</p>
+                </div>
+                <div class="card-footer bg-light">
+                    <p class="lead mb-0 text-left font-weight-bold">£{{product.price}}</p>
+    
+                    product category
+    
+                    {% if product.average_rating%}
+                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{product.average_rating}} / 5</small>
+                    {% elif product.average_rating == 0 %}
+                        <small class="text-muted">No Rating</small>
+                    {% endif %}
+    
+                </div>
+    
             </div>
-
         </div>
+        {% endfor %}
+    
     </div>
-    {% endfor %}
-
 </div>
+
 
 {% endblock %}
