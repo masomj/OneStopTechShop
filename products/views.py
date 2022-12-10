@@ -9,3 +9,13 @@ def products(request):
         'products':products
     }
     return render(request,'products.html',context)
+
+def productInfo(request,product_id):
+    product = get_object_or_404(Product, pk = product_id)
+    
+    context={
+        'product':product
+    }
+    print(product.category.name)
+    
+    return render(request,'productInfo.html',context)
