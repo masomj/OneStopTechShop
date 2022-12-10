@@ -1,0 +1,13 @@
+.image{
+  background-image: url("/static/OneStopTechShopBackground.png");  
+  background-size: cover;
+  height: 85vh;
+}
+footer{
+    position: fixed;
+    left:0;
+    right:0;
+    bottom: 0;
+    width: 100%;
+    height:15vh;
+}
