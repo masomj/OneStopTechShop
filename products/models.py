@@ -19,7 +19,7 @@ class Product(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True)
     price=models.DecimalField(max_digits=12, decimal_places = 2, null=True, blank=True)
     currency=models.CharField(max_length=254,null=True, blank=True)
-    images=models.ImageField(null=True,blank=True)
+    images=models.URLField(null=True,blank=True)
     category=models.ForeignKey('Category',null=True, blank=True, on_delete=models.SET_NULL)
     description=models.CharField(max_length=254,null=True, blank=True)
     average_rating=models.CharField(max_length=254,null=True, blank=True)
