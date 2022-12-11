@@ -39,8 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'home',
     'products',
+    
+    'allauth', # new
+    'allauth.account', # new
+    'allauth.socialaccount', # new
 ]
 
 MIDDLEWARE = [
@@ -59,7 +64,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR,'templates')
+            
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -116,6 +121,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+
 
 
 # Static files (CSS, JavaScript, Images)
