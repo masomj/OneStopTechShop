@@ -40,7 +40,7 @@ def products(request):
 
         if 'query' in request.GET:
             query = request.GET['query']
-            queries = Q(title__icontains=query) | Q(description__icontains=query)
+            queries = Q(title__icontains=query) | Q(description__icontains=query) | Q(category__icontains=query)
             products = products.filter(queries)
             
     current_sorting = f'{sort}_{direction}'
@@ -58,8 +58,6 @@ def products(request):
     
     
     return render(request,'products.html',context)
-
-
 
 
 def productInfo(request,product_id):
