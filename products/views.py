@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,reverse,get_object_or_404
 from django.db.models.functions import Lower
 from .models import Product, Category
+from django.db.models import Q
 
 # Create your views here.
 
@@ -9,6 +10,7 @@ def products(request):
     categories = None
     sort = None
     direction = None
+    query = None
     
     
     if request.GET:
@@ -35,15 +37,25 @@ def products(request):
             categories = request.GET['category'].split(',') 
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
+
+        if 'query' in request.GET:
+            query = request.GET['query']
+            queries = Q(title__icontains=query) | Q(description__icontains=query)
+            products = products.filter(queries)
+            
     current_sorting = f'{sort}_{direction}'
     
+
     context={
         'products':products,
         'selected_categories':categories,
         'current_sorting':current_sorting,
+        'query':query,
         
     }
-    print(categories)
+    
+
+    
     
     return render(request,'products.html',context)
 

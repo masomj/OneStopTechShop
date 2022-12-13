@@ -1,15 +1,14 @@
 .image{
   background-image: url("/static/OneStopTechShopBackground.png");  
   background-size: cover;
-  height: 85vh;
+  height: 100vh;
 }
 
 body{
-  
   text-align:center;
   display:grid;
-  min-height:100vh;
 
 }
+
 
 

@@ -27,12 +27,25 @@
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                     <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item me-5">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <input type="text" id="query" class="form-control" aria-describedby="Searchproducts">
+                                  </div>
+                                  <div class="col-auto">
+                                    <span id="search" class="form-text">
+                                      <button id="querySubmit" type="submit" class="btn btn-primary">Search!</button>
+                                    </span>
+                                  </div>
+                        </div>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active text-white" href="{%url 'products'%}">Shop</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Bag</a>
                         </li>
+                        
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
@@ -66,7 +79,19 @@
     </footer>
 </body>
 
-
+<script>
+    $('#querySubmit').click(function () {
+        var q = $('#query');
+        var url = new URL(window.location);
+        productURL = new URL('/products/', url)
+        var query = q.val();
+        if (query != ""){
+            
+            productURL.searchParams.set("query",query)
+            window.location.replace(productURL)
+        }
+    } )
+</script>
 
 
 
