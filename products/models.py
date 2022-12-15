@@ -7,11 +7,16 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Sub_Categories'
     name = models.CharField(max_length=254) 
-    
+    parentCategory = models.ForeignKey('CategoryParent',null=True,blank=True, on_delete=models.SET_NULL)
     
     def __str__(self):
         return self.name
-    
+
+class CategoryParent(models.Model):
+    name = models.CharField(max_length=254)
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     
