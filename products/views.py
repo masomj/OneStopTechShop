@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,reverse,get_object_or_404
 from django.db.models.functions import Lower
-from .models import Product, Category
+from .models import Product, Category, CategoryParent
 from django.db.models import Q
 
 # Create your views here.
@@ -12,6 +12,7 @@ def products(request):
     direction = None
     query = None
     all_categories = Category.objects.all()
+    parent_categories = CategoryParent.objects.all()
     
     
     if request.GET:
@@ -46,19 +47,18 @@ def products(request):
             
     current_sorting = f'{sort}_{direction}'
     
-
+    
     context={
         'products':products,
         'selected_categories':categories,
         'current_sorting':current_sorting,
         'query':query,
-        'all_categories':all_categories
+        'all_categories':all_categories,
+        'parent_categories':parent_categories,
         
     }
     
 
-    
-    
     return render(request,'products.html',context)
 
 
