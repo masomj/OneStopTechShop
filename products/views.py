@@ -11,6 +11,7 @@ def products(request):
     sort = None
     direction = None
     query = None
+    all_categories = Category.objects.all()
     
     
     if request.GET:
@@ -51,6 +52,7 @@ def products(request):
         'selected_categories':categories,
         'current_sorting':current_sorting,
         'query':query,
+        'all_categories':all_categories
         
     }
     

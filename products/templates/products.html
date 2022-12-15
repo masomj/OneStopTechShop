@@ -1,12 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block Title%} | Products{% endblock %}
+{% block Title %} | Products{% endblock %}
 {% block content %}
 
-
-
-<div class="container">
-
+<div class="container-fluid">
     <div class="row mt-1 mb-2">         
         <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
             <div class="sort-select-wrapper w-50 mt-2">
@@ -43,44 +40,60 @@
             </p>
         </div>
     </div>
-    <div class="row w-100">
-        {% for product in products %}
-        <div class="sol-sm-6 col-md-6 col-lg-4 mt-3 mb-2">
-            <div class="card  h-100 border-1 bg-light">
-                {% if product.images %}
-                <a href="{% url 'productInfo' product.id %}">
-                    <img src="{{product.images}}" alt="{{ product.name }}" class="card-img-top img-fluid">
-                </a>
-                {% else %}
-
-                {% endif %}
-                <div class="card-body pb-0">
-                    <p class="mb-0">{{product.title}}</p>
+    <div class="d-inline-flex">
+        <div class="container category_filter col col-sm-3 col-lg-2">
+            <form action="">
+                <h3>Categories</h3>
+                {% for category in all_categories %}
+                <div class="form-control mt-1">
+                    <label for="{{category}}">{{category}}</label>
+                    <input type="checkbox" id="{{category}}" value="{{category}}" name="{{category}}" >
                 </div>
-                <div class="card-footer bg-light">
-                    <p class="lead mb-0 text-left font-weight-bold">£{{product.price}}</p>
-
-                    {% if product.category %}
-
-                    <a href="{% url 'products' %}?category={{ product.category.name }} "
-                        class="text-muted">{{ product.category.name }}</a>
-
-                    {% endif %}
-
-                    {% if product.average_rating%}
-                    <small class="text-muted"><i class="fas fa-star mr-1"></i>{{product.average_rating}} / 5</small>
-                    {% elif product.average_rating == 0 %}
-                    <small class="text-muted">No Rating</small>
-                    {% endif %}
-
-                </div>
-
-            </div>
+                {% endfor %}
+                <input type="submit" class="btn btn-primary btn-sm mt-1">
+            </form>
         </div>
-        {% endfor %}
-
+        <div class="row w-100">
+           
+            {% for product in products %}
+            <div class="col-sm-6 col-md-6 col-lg-3 mt-3 mb-2">
+                <div class="card  h-100 border-1 bg-light">
+                    {% if product.images %}
+                    <a href="{% url 'productInfo' product.id %}">
+                        <img src="{{product.images}}" alt="{{ product.name }}" class="card-img-top img-fluid">
+                    </a>
+                    {% else %}
+    
+                    {% endif %}
+                    <div class="card-body pb-0">
+                        <p class="mb-0">{{product.title}}</p>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <p class="lead mb-0 text-left font-weight-bold">£{{product.price}}</p>
+    
+                        {% if product.category %}
+    
+                        <a href="{% url 'products' %}?category={{ product.category.name }} "
+                            class="text-muted">{{ product.category.name }}</a>
+    
+                        {% endif %}
+    
+                        {% if product.average_rating%}
+                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{product.average_rating}} / 5</small>
+                        {% elif product.average_rating == 0 %}
+                        <small class="text-muted">No Rating</small>
+                        {% endif %}
+    
+                    </div>
+    
+                </div>
+            </div>
+            {% endfor %}
+    
+        </div>
     </div>
-</div>
+    </div>
+    
 
 
 <script type="text/javascript">
