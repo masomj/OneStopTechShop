@@ -85,7 +85,7 @@
 
                     {% if cat.parentCategory == category %}
                     <li>
-                      <a href="#" class="dropdown-item">{{ cat.name }}</a>
+                      <a href="{% url 'products' %}?category={{ cat.name }}" class="dropdown-item">{{ cat.name }}</a>
                     </li>
                     {% endif %}
                   {% endfor%}

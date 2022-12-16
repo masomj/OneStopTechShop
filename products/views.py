@@ -7,7 +7,6 @@ from django.db.models import Q
 
 def products(request):
     products = Product.objects.all()
-    categories = None
     sort = None
     direction = None
     query = None
@@ -53,7 +52,7 @@ def products(request):
         'selected_categories':categories,
         'current_sorting':current_sorting,
         'query':query,
-        'all_categories':all_categories,
+        'categories':all_categories,
         'parent_categories':parent_categories,
         
     }
@@ -64,9 +63,12 @@ def products(request):
 
 def productInfo(request,product_id):
     product = get_object_or_404(Product, pk = product_id)
-    
+    all_categories = Category.objects.all()
+    parent_categories = CategoryParent.objects.all()
     context={
-        'product':product
+        'product':product,
+        'categories':all_categories,
+        'parent_categories':parent_categories,
     }
     print(product.category.name)
     
