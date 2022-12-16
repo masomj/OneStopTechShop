@@ -16,14 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path,include
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    path('', include('home.urls')),
-    path('products/', include('products.urls')),
-    path('bag/', include('bag.urls'))
-             
+    path('', views.bag, name='bag'),
+    path('add_to_bag/<product_id>',views.add_to_bag,name='add_to_bag')
+   
 ]
 
 urlpatterns += staticfiles_urlpatterns()
