@@ -2,11 +2,13 @@ from django.shortcuts import render,redirect,reverse,get_object_or_404
 from django.db.models.functions import Lower
 from .models import Product, Category, CategoryParent
 from django.db.models import Q
+from django.forms import ModelForm, Textarea
 
 # Create your views here.
 
 def products(request):
     products = Product.objects.all()
+    categories = None
     sort = None
     direction = None
     query = None
@@ -72,3 +74,39 @@ def productInfo(request,product_id):
     }
     
     return render(request,'productInfo.html',context)
+
+class editProductForm(ModelForm):
+    class Meta:
+        model = Product
+        fields =['title','brand','sku','price','images','category','description','average_rating','reviews_count',]
+        widgets = {
+            'description': Textarea(attrs={'cols': 80, 'rows': 15}),
+            'title':Textarea(attrs={'cols': 40, 'rows': 1}),
+            'images':Textarea(attrs={'cols': 80, 'rows': 1}),
+        }
+
+
+def editProduct(request, product_id):
+    product = get_object_or_404(Product, pk = product_id)
+    print(product)
+    all_categories = Category.objects.all()
+    parent_categories = CategoryParent.objects.all()
+    form = editProductForm(instance=product)
+
+    if request.method == 'POST':
+        edits = editProductForm(request.POST, instance=product)
+        print(edits)
+        if edits.is_valid():
+            edits.save()
+        else:
+            print('not valid')
+        return products(request)
+
+    context={
+        'product':product,
+        'categories':all_categories,
+        'parent_categories':parent_categories,
+        'form':form
+    }
+
+    return render(request,'editProduct.html',context)
