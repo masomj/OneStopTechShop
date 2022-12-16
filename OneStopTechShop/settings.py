@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'home',
     'products',
+    'bag',
     'allauth', # new
     'allauth.account', # new
     'allauth.socialaccount', # new
@@ -73,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'bag.contexts.bag_contents',
             ],
         },
     },
