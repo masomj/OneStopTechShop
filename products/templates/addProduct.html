@@ -1,8 +1,24 @@
 {%extends 'base.html'%}
 
-{% loads static %}
+{% load static %}
 
 {% block Title %} | Add Product{% endblock %}
 
 {% block content%}
+<h2>Add Product</h2>
+<div class="container text-center">
+    <form action="" method="POST" class="" novalidate>
+        {% csrf_token %}
+            {% for field in form %}
+            <div class="form-outline">
+                <label class="">{{field.label}}</label>
+                <div class="w-100">{{field}}</div>
+            </div>
+            {%endfor%}
+        
+
+        <input class="btn btn-primary" type="submit" value="Submit">
+    </form>
+    
+</div>
 {% endblock %}

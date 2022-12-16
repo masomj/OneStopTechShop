@@ -12,7 +12,6 @@
         {% csrf_token %}
             {% for field in form %}
             <div class="form-outline">
-                <label class="">{{field.label}}</label>
                 <div class="w-100">{{field}}</div>
             </div>
             {%endfor%}

@@ -78,7 +78,7 @@ def productInfo(request,product_id):
 class editProductForm(ModelForm):
     class Meta:
         model = Product
-        fields =['title','brand','sku','price','images','category','description','average_rating','reviews_count',]
+        fields =['title','brand','sku','price','images','category','description','average_rating','reviews_count','has_sizes']
         widgets = {
             'description': Textarea(attrs={'cols': 80, 'rows': 15}),
             'title':Textarea(attrs={'cols': 40, 'rows': 1}),
@@ -88,14 +88,13 @@ class editProductForm(ModelForm):
 
 def editProduct(request, product_id):
     product = get_object_or_404(Product, pk = product_id)
-    print(product)
     all_categories = Category.objects.all()
     parent_categories = CategoryParent.objects.all()
     form = editProductForm(instance=product)
 
     if request.method == 'POST':
         edits = editProductForm(request.POST, instance=product)
-        print(edits)
+        
         if edits.is_valid():
             edits.save()
         else:
@@ -108,5 +107,34 @@ def editProduct(request, product_id):
         'parent_categories':parent_categories,
         'form':form
     }
-
     return render(request,'editProduct.html',context)
+
+def deleteProduct(request,product_id):
+    product = get_object_or_404(Product, pk = product_id)
+    product.delete()
+    print('deleted')
+    return products(request)
+
+
+def createProduct(request):
+    all_categories = Category.objects.all()
+    parent_categories = CategoryParent.objects.all()
+    form = editProductForm()
+   
+    if request.method=='POST':
+
+        newProduct=editProductForm(request.POST)
+
+        if newProduct.is_valid():
+            newProduct.save()
+        else:
+            print('not valid')
+        return products(request)
+        
+    context={
+        'categories':all_categories,
+        'parent_categories':parent_categories,
+        'form':form
+    }
+    return render(request, 'addProduct.html',context)
+

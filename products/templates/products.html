@@ -7,6 +7,7 @@
     <div class="row mt-1 mb-2">         
         <div class="col-12 col-md-6 ">
             <div class="sort-select-wrapper mt-2 d-flex justify-content-end ">
+                <a href="{% url 'createProduct' %}">create</a>
                 <select name="sort-selector" id="sort-selector"
                     class="custom-select custom-select-sm rounded-0 border border-{%if current_sorting != 'None_None' %}info{%else%}black{%endif%}">
                     <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
@@ -49,7 +50,7 @@
                         <img src="{{product.images}}" alt="{{ product.name }}" class="card-img-top img-fluid">
                     </a>
                     {% else %}
-    
+                        <a href="{% url 'productInfo' product.id %}"><p> image</p></a>
                     {% endif %}
                     <div class="card-body pb-0">
                         <p class="mb-0">{{product.title}}</p>
