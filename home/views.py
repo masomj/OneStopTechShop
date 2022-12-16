@@ -9,9 +9,5 @@ def index(request):
     context={
         'categories':categories,
         'parent_categories':parent_categories
-    }
-    for category in categories:
-        print(category.parentCategory)
-     
-    
+    }    
     return render(request,'index.html',context)

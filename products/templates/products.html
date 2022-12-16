@@ -57,7 +57,7 @@
                     <div class="card-footer bg-light">
                         <p class="lead mb-0 text-left font-weight-bold">£{{product.price}}</p>
                         {% if product.category %}
-                            <a href="{% url 'products' %}?category={{ product.category.name }} "
+                            <a href="{% url 'products' %}?category={{ product.category.name }}"
                             class="text-muted">{{ product.category.name }}</a>
                         {% endif %}
     
