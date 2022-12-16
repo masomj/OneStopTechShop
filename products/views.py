@@ -70,6 +70,5 @@ def productInfo(request,product_id):
         'categories':all_categories,
         'parent_categories':parent_categories,
     }
-    print(product.category.name)
     
     return render(request,'productInfo.html',context)
