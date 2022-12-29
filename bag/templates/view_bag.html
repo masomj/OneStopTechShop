@@ -48,8 +48,10 @@
                                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                     <input type="hidden" name="id" value="{{ item.product.id }}">
                                     <button type="submit" class="mt-1 btn btn-primary btn-sm">Update</button>
+                                    <a href="{% url 'remove_item' item.product.id %}" class="text-danger">Remove Item</a>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -58,7 +60,10 @@
     </div>
 {% endfor %}
 <div class="container">
-    
+    <div class="row w-100 border">
+        <p>Bag Total: £<strong>{{total|floatformat:2}}</strong></p>
+
+    </div>
 </div>
         </div>
     </div>
