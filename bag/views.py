@@ -38,6 +38,14 @@ def update_bag(request, product_id):
     request.session['bag'] = bag
     return redirect(redirect_url)
 
+def remove_item(request, product_id):
+    bag = request.session.get('bag',{})
+    redirect_url = request.POST.get('redirect_url')
+    bag.pop(product_id)
+    request.session['bag'] = bag
+
+    return render(request,'view_bag.html')
+
 
 
 
