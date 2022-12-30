@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+
+{% load static %}
+
+{% block Title %} | Product Administration{% endblock %}
+
+
+
+{% block content %}
+<h2 class="mt-2 ms-2">Product & Category Administration</h2>
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md">
+        <form action="">
+            {% csrf_token %}
+        </form>
+        <a href="" class="btn btn-primary">Update Product</a>
+      </div>
+      <div class="col-md">
+        <a href="#" class="btn btn-primary">Create Product</a>
+      </div>
+      <div class="col-md">
+        <a href="#" class="btn btn-primary">Update Category</a>
+      </div>
+      <div class="col-md">
+        <a href="#" class="btn btn-primary">Create Category</a>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
