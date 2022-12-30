@@ -146,23 +146,21 @@
       <p>© 2022 Copyright: One Stop Tech Clinic</p>
     </div>
   </footer>
-  <script type="text/javascript" src="{% static 'js\mdb.min.js' %}"></script>
-  <script>
-    $('#querySubmit').click(function () {
-      var q = $('#query');
-      var url = new URL(window.location);
-      productURL = new URL('/products/', url)
-      var query = q.val();
-      if (query != "") {
-
-        productURL.searchParams.set("query", query)
-        window.location.replace(productURL)
-      }
-    })
-  </script>
-
 </body>
+<script type="text/javascript" src="{% static 'js\mdb.min.js' %}"></script>
+<script>
+  $('#querySubmit').click(function () {
+    var q = $('#query');
+    var url = new URL(window.location);
+    productURL = new URL('/products/', url)
+    var query = q.val();
+    if (query != "") {
 
+      productURL.searchParams.set("query", query)
+      window.location.replace(productURL)
+    }
+  })
+</script>
 
 
 
