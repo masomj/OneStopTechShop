@@ -1,8 +1,5 @@
 //disable buttons outside 1-99 range
 
-alert("Hello, Welcome to Javatpoint");
-
-
 function handleEnableDisable(itemId){
     var currentValue = parseInt($(`id_qty${itemId}`).val());
     var minusDisabled = currentValue <2;
