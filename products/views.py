@@ -3,6 +3,7 @@ from django.db.models.functions import Lower
 from .models import Product, Category, CategoryParent
 from django.db.models import Q
 from django.forms import ModelForm, Textarea
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -72,7 +73,6 @@ def productInfo(request,product_id):
         'categories':all_categories,
         'parent_categories':parent_categories,
     }
-    
     return render(request,'productInfo.html',context)
 
 class editProductForm(ModelForm):
@@ -85,7 +85,7 @@ class editProductForm(ModelForm):
             'images':Textarea(attrs={'cols': 80, 'rows': 1}),
         }
 
-
+@login_required
 def editProduct(request, product_id):
     product = get_object_or_404(Product, pk = product_id)
     all_categories = Category.objects.all()
@@ -137,4 +137,8 @@ def createProduct(request):
         'form':form
     }
     return render(request, 'addProduct.html',context)
+
+def admin(request):
+
+    return render(request, 'admin.html')
 
