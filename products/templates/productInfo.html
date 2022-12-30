@@ -29,7 +29,7 @@
             {% elif product.average_rating == 0 %}
                     <small class="text-muted">No Rating</small>
             {% endif %}
-            {% if request.user.is_superuser %}
+            {% if request.user.is_staff %}
                 <a href="{% url 'editProduct' product.id %}" class="btn btn-primary">edit</a>
                 <a href="{% url 'deleteProduct' product.id %}" class="btn btn-primary">delete</a>
             {% endif %}
