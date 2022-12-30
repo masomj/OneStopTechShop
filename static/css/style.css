@@ -7,13 +7,17 @@
 body{
   text-align:center;
   display:grid;
-  height: 100vh;
+
 }
 
 footer{
   position: relative;
   bottom:0;
   width:100%;
+}
+
+main{
+  height:100vh;
 }
 
 
