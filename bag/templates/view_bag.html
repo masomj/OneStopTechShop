@@ -59,15 +59,21 @@
         </div>                  
     </div>
 {% endfor %}
-<div class="container">
-    <div class="row w-100 border">
-        <p>Bag Total: £<strong>{{total|floatformat:2}}</strong></p>
-
-    </div>
-</div>
+    <div class="container">
+        <div class="row float-end w-25">
+            <div class="card mt-4">
+                <div class="col-md-4">
+                    <div class="card-text">
+                        <p>Bag Total: £<strong>{{total|floatformat:2}}</strong></p>
+                        <a href="#" class="btn btn-primary btn-sm mb-1">Checkout</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+    
+
 
 
 
