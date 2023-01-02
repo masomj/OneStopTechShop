@@ -28,6 +28,10 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c
 =======
 
 >>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c
