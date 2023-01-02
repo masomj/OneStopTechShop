@@ -63,7 +63,6 @@ def products(request):
 
     return render(request,'products.html',context)
 
-
 def productInfo(request,product_id):
     product = get_object_or_404(Product, pk = product_id)
     all_categories = Category.objects.all()
@@ -85,7 +84,49 @@ class editProductForm(ModelForm):
             'images':Textarea(attrs={'cols': 80, 'rows': 1}),
         }
 
-@login_required
+class editProductForm(ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name', 'parentCategory']
+
+def admin(request):
+
+    return render(request, 'admin.html')
+
+def editCategory(request):
+
+    return render()
+
+def createCategory(request):
+
+    return render()
+
+def deleteCategory(request):
+     
+    return render()
+
+def createProduct(request):
+    all_categories = Category.objects.all()
+    parent_categories = CategoryParent.objects.all()
+    form = editProductForm()
+   
+    if request.method=='POST':
+
+        newProduct=editProductForm(request.POST)
+
+        if newProduct.is_valid():
+            newProduct.save()
+        else:
+            print('not valid')
+        return products(request)
+        
+    context={
+        'categories':all_categories,
+        'parent_categories':parent_categories,
+        'form':form
+    }
+    return render(request, 'addProduct.html',context)
+
 def editProduct(request, product_id):
     product = get_object_or_404(Product, pk = product_id)
     all_categories = Category.objects.all()
@@ -115,30 +156,4 @@ def deleteProduct(request,product_id):
     print('deleted')
     return products(request)
 
-
-def createProduct(request):
-    all_categories = Category.objects.all()
-    parent_categories = CategoryParent.objects.all()
-    form = editProductForm()
-   
-    if request.method=='POST':
-
-        newProduct=editProductForm(request.POST)
-
-        if newProduct.is_valid():
-            newProduct.save()
-        else:
-            print('not valid')
-        return products(request)
-        
-    context={
-        'categories':all_categories,
-        'parent_categories':parent_categories,
-        'form':form
-    }
-    return render(request, 'addProduct.html',context)
-
-def admin(request):
-
-    return render(request, 'admin.html')
 
