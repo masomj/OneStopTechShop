@@ -24,3 +24,32 @@ main{
 .category_filter{
   height:100%;
 }
+<<<<<<< HEAD
+=======
+
+
+/* Nested dropdown menu from mdbootstrap.com */
+
+.dropdown-menu li {
+  position: relative;
+
+
+  }
+.dropdown-menu .dropdown-submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: -7px;
+ }
+
+
+.dropdown-menu .dropdown-submenu-left {
+  right: 100%;
+  left: auto;
+}
+
+
+.dropdown-menu > li:hover > .dropdown-submenu {
+  display: block;
+}
+>>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c

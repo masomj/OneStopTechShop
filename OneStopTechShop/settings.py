@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c
 # Application definition
 MEDIA_ROOT = 'OneStopTechShop/media/'
 MEDIA_URL = '/media/'
