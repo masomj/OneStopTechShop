@@ -11,4 +11,29 @@
 
 
 <h2>Your Profile</h2>
+<div class="container">
+    <form action="{% url 'profile'%}" class="">
+        <div class="form-outline mt-2">
+            <label for="postcode" class="form-label" readonly>Postcode:</label>
+            <input type="text" class="form-control" id="postcode" name="postcode" value="{{userdetails.postcode }}" readonly>
+        </div>
+        <div class="form-outline mt-2">
+            <label for="street" class="form-label" readonly>Street</label>
+            <input type="text" class="form-control" id="street" name="street" value="{{userdetails.street_name}}" readonly>
+    
+        </div>
+        <div class="form-outline mt-2">
+            <label for="number" class="form-label" readonly>house Number</label>
+            <input type="text" class="form-control" id="number" name="number" value="{{userdetails.house_number}}" readonly>
+        </div>
+        <div class="form-outline mt-2">
+            <label for="city" class="form-label" readonly>City</label>
+            <input type="text" class="form-control" id="city" name="city" value="{{userdetails.city }}" readonly>
+        </div>
+        
+        <button class="btn btn-primary d-none" id="submit">Submit</button>
+    </form>
+    <button class="btn btn-primary" id="readonly_edit" name="edit">Edit</button>
+</div>
+
 {% endblock %}
