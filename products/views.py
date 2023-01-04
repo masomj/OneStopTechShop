@@ -63,14 +63,6 @@ def products(request):
 
     return render(request,'products.html',context)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c
-=======
-
->>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c
 def productInfo(request,product_id):
     product = get_object_or_404(Product, pk = product_id)
     all_categories = Category.objects.all()
@@ -92,8 +84,6 @@ class editProductForm(ModelForm):
             'images':Textarea(attrs={'cols': 80, 'rows': 1}),
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 class editProductForm(ModelForm):
     class Meta:
         model = Category
@@ -137,12 +127,7 @@ def createProduct(request):
     }
     return render(request, 'addProduct.html',context)
 
-=======
 @login_required
->>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c
-=======
-@login_required
->>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c
 def editProduct(request, product_id):
     product = get_object_or_404(Product, pk = product_id)
     all_categories = Category.objects.all()
@@ -173,11 +158,6 @@ def deleteProduct(request,product_id):
     return products(request)
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c
 def createProduct(request):
     all_categories = Category.objects.all()
     parent_categories = CategoryParent.objects.all()
@@ -203,8 +183,3 @@ def createProduct(request):
 def admin(request):
 
     return render(request, 'admin.html')
-
-<<<<<<< HEAD
->>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c
-=======
->>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c

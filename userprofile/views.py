@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 from django.shortcuts import render, get_object_or_404
 from .models import userDetails
 from django.contrib.auth.models import User
@@ -17,19 +15,14 @@ def profile(request):
         'userdetails':userdetails,
     }
     print(userdetails.postcode)
+    
+    if request.method=='POST':
+        userdetails.user_id = logged_in_user
+        userdetails.postcode = request.POST['postcode']
+        userdetails.house_number = request.POST['number']
+        userdetails.street_name=request.POST['street']
+        userdetails.city=request.POST['city']
     return render(request, 'profile.html',context)
-=======
-=======
->>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c
-from django.shortcuts import render
-
-# Create your views here.
 
 
-def profile(request):
-<<<<<<< HEAD
-    return render(request, 'profile.html')
->>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c
-=======
-    return render(request, 'profile.html')
->>>>>>> 893dcc3af98d6eb58b6e6b93375273009b5f269c
+
