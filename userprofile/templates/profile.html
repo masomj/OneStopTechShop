@@ -10,7 +10,8 @@
 
 <h2>Your Profile</h2>
 <div class="container">
-    <form action="{% url 'profile'%}" class="">
+    <form action="{% url 'profile' %}" class="" method="POST">
+        {% csrf_token %}
         <div class="form-outline mt-2">
             <label for="postcode" class="form-label" readonly>Postcode:</label>
             <input type="text" class="form-control" id="postcode" name="postcode" value="{{userdetails.postcode }}" readonly>
@@ -33,4 +34,5 @@
     </form>
     <button class="btn btn-primary" id="readonly_edit" name="edit">Edit</button>
 </div>
+<script type="text/javascript" src="{% static 'js\profile.js' %}"></script>
 {% endblock %}

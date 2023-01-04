@@ -17,7 +17,7 @@ def profile(request):
     print(userdetails.postcode)
     
     if request.method=='POST':
-        userdetails.user_id = logged_in_user
+        userdetails.user_id = request.user
         userdetails.postcode = request.POST['postcode']
         userdetails.house_number = request.POST['number']
         userdetails.street_name=request.POST['street']
