@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 def profile(request):
     logged_in_user = request.user.id
     userdetails = get_object_or_404(userDetails, pk=logged_in_user)
-    print(logged_in_user)
+    
     
     context={
         'user':logged_in_user,
