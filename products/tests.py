@@ -24,4 +24,6 @@ class ProductModelsTestCase(TestCase):
         cat = Category.objects.get(name = 'Gaming PCs')
         self.assertEquals(str(cat.name),'Gaming PCs')
         self.assertAlmostEquals(str(cat.parentCategory),'Computers')
-
+    def test_parentCategory_object_populates(self):
+        cat = CategoryParent.objects.get(name='Computers')
+        self.assertEquals(str(cat.name),'Computers')
