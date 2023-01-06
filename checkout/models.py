@@ -1,8 +1,11 @@
 from django.db import models
+from django.db.models import Sum
+from django.conf import settings
+from products.models import Product
 
 # Create your models here.
 
-class order (models.Model):
+class order(models.Model):
     order_number=models.CharField(max_length=64, null=False, editable=False)
     full_name=models.CharField(max_length=50, null=False, blank=False)
     email=models.CharField(max_length=64, null=False)
@@ -17,3 +20,8 @@ class order (models.Model):
     delivery_cost=models.DecimalField(max_digits=6, decimal_places=2 ,null=True, default=0)
     order_total=models.DecimalField(max_digits=11, decimal_places=2 ,null=False, default=0)
     payment_due=models.DecimalField(max_digits=11, decimal_places=2 ,null=False, default=0)
+
+class orderItem(models.Model):
+    order = models.ForeignKey(order, null=False, blank=False, on_delete=models.CASCADE, related_name='orderItem')
+    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
+    quantity = models.IntegerField(null=False, blank=False, default=0)
