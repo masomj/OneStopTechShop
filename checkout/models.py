@@ -41,7 +41,7 @@ class orderItem(models.Model):
     quantity = models.IntegerField(null=False, blank=False, default=0)
     orderitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
     
-     def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
     
         self.orderitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
