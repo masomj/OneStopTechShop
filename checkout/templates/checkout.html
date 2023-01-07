@@ -7,44 +7,53 @@
 
 {% block content%}
 <div class="container">
-    <form action="" class="w-50">
-        <div class="form-outline mt-2">
-            <label for="full_name" class="form-label">Full Name</label>
-            <input id="full_name" name="full_name" type="text" class="form-control" value="{{userdetails.full_name}}">
-        </div>
-        <div class="form-outline mt-2">
-            <label for="" class="form-label">Email</label>
-            <input type="text" id="email" name="email" class="form-control" value="{{userdetails.email}}">
-        </div>
-        <div class="form-outline mt-2">
-            <label for="" class="form-label">Phone Number</label>
-            <input type="text" id="phone_no" name="phone_no" class="form-control" value="{{userdetails.phone_number}}">
-        </div>
-        <div class="form-outline mt-2">
-            <label for="" class="form-label">Country</label>
-            <input type="text" name="country" id="country" class="form-control" value="{{userdetails.country}}">
-        </div>
-        <div class="form-outline mt-2">
-            <label for="" class="form-label">Postcode</label>
-            <input type="text" id="postcode" name="postcode" class="form-control" value="{{userdetails.postcode}}">
-        </div>
-        <div class="form-outline mt-2">
-            <label for="" class="form-label">Town</label>
-            <input type="text" id="town" name="town" class="form-control" value="{{userdetails.town}}">
-        </div>
-        <div class="form-outline mt-2">
-            <label for="" class="form-label">City</label>
-            <input type="text" id="city" name="town" class="form-control" value="{{userdetails.city}}">
-        </div>
-        <div class="form-outline mt-2">
-            <label for="" class="form-label">Street</label>
-            <input type="text" id="street_name" name="street_name" class="form-control" value="{{userdetails.street_name}}">
-        </div>
-        <div class="form-outline mt-2 mb-5">
-            <label for="" class="form-label">House Number</label>
-            <input type="text" id="House Number" name="house_number" class="form-control" value="{{userdetails.house_number}}">
-        </div>
-    </form>
+    <div class="container border rounded text-center">
+        <h6>Delivery Information</h6>
+        <p class="w-50" >If you are logged in, these details are filled from your user profile. Editing the details below will not affect your saved address.</p>
+        <form action="" class="w-50">
+            <div class="form-outline mt-2">
+                <label for="full_name" class="form-label">Full Name</label>
+                <input id="full_name" name="full_name" type="text" class="form-control" value="{{userdetails.full_name}}">
+            </div>
+            <div class="form-outline mt-2">
+                <label for="" class="form-label">Email</label>
+                <input type="text" id="email" name="email" class="form-control" value="{{userdetails.email}}">
+            </div>
+            <div class="form-outline mt-2">
+                <label for="" class="form-label">Phone Number</label>
+                <input type="text" id="phone_no" name="phone_no" class="form-control" value="{{userdetails.phone_number}}">
+            </div>
+            <div class="form-outline mt-2">
+                <label for="" class="form-label">Country</label>
+                <input type="text" name="country" id="country" class="form-control" value="{{userdetails.country}}">
+            </div>
+            <div class="form-outline mt-2">
+                <label for="" class="form-label">Postcode</label>
+                <input type="text" id="postcode" name="postcode" class="form-control" value="{{userdetails.postcode}}">
+            </div>
+            <div class="form-outline mt-2">
+                <label for="" class="form-label">Town</label>
+                <input type="text" id="town" name="town" class="form-control" value="{{userdetails.town}}">
+            </div>
+            <div class="form-outline mt-2">
+                <label for="" class="form-label">City</label>
+                <input type="text" id="city" name="town" class="form-control" value="{{userdetails.city}}">
+            </div>
+            <div class="form-outline mt-2">
+                <label for="" class="form-label">Street</label>
+                <input type="text" id="street_name" name="street_name" class="form-control" value="{{userdetails.street_name}}">
+            </div>
+            <div class="form-outline mt-2 mb-5">
+                <label for="" class="form-label">House Number</label>
+                <input type="text" id="House Number" name="house_number" class="form-control" value="{{userdetails.house_number}}">
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <p>Bag Total: £<strong>{{total|floatformat:2}}</strong></p>
+        <a href="#" class="btn btn-primary btn-sm mb-1">Checkout</a>
+    </div>
 </div>
 
 {% endblock %}
