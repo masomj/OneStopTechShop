@@ -10,13 +10,7 @@
 <div class="container text-center">
     <form action="" method="POST" class="" novalidate>
         {% csrf_token %}
-            {% for field in form %}
-            <div class="form-outline">
-                <div class="w-100">{{field}}</div>
-            </div>
-            {%endfor%}
-        
-
+            {{order_form}}
         <input class="btn btn-primary" type="submit" value="Submit">
     </form>
     
