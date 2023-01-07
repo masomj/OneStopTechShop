@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from userprofile.models import userDetails
+from django.contrib.auth.models import User
 
 
 
@@ -8,11 +9,10 @@ from userprofile.models import userDetails
 def checkout(request):
     bag = request.session.get('bag',{})
     logged_in_user = request.user.id
-    print(logged_in_user)
-    print(get_object_or_404(userDetails, pk=logged_in_user))
-    userdetails = get_object_or_404(userDetails, pk=logged_in_user)
+    userObj = get_object_or_404(User, pk=logged_in_user)
+    userdetails = get_object_or_404(userDetails, user_id=userObj.id)
     context ={
-        'user_details':userdetails
+        'userdetails':userdetails
     }
 
     return render(request,'checkout.html', context)

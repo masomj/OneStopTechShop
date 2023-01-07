@@ -28,10 +28,11 @@ def profile(request):
         userdetails.street_name=request.POST['street_name']
         userdetails.city=request.POST['city']
         userdetails.full_name = request.POST['full_name']
-        userdetails.email =request.POST['email']
+        userdetails.email = request.POST['email']
         userdetails.phone_number = request.POST['phone_no']
         userdetails.country=request.POST['country']
         userdetails.town = request.POST['town']
+        userdetails.save()
         return redirect(reverse('products'))
     
     return render(request, 'profile.html',context)
