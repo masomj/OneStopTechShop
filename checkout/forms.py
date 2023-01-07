@@ -23,7 +23,7 @@ class orderForm():
             'house_number':'House number',
         }
         
-        self.fields['full_name'].widgets.attrs['autofocus'] = True4567
+        self.fields['full_name'].widgets.attrs['autofocus'] = True
         for field in self.fields:
             if self.fields[field].required:
                 placeholder = f'{placeholders[field]} *'

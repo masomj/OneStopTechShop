@@ -5,7 +5,13 @@ from django.contrib.auth.models import User
 
 class userDetails(models.Model):
     user_id = models.ForeignKey(User,null=False,  on_delete=models.CASCADE)
-    postcode = models.CharField(max_length=7)
+    full_name = models.CharField(max_length=256, default="", blank=True)
+    email = models.CharField(max_length=256, blank=True)
+    postcode = models.CharField(max_length=7, default="", blank=True)
     house_number=models.IntegerField()
-    street_name=models.CharField(max_length=256)
-    city=models.CharField(max_length=256)
+    phone_number=models.IntegerField()
+    street_name=models.CharField(max_length=256,default="", blank=True)
+    city=models.CharField(max_length=256, default="", blank=True)
+    country=models.CharField(max_length=256,default="",blank=True)
+    town=models.CharField(max_length=256, default="",blank=True)
+    
