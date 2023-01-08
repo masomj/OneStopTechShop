@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'allauth.account', # new
     'allauth.socialaccount', # new
     'userprofile',
-    'checkout'
+    'checkout',
+    'mathfilters'
 ]
 
 MIDDLEWARE = [
