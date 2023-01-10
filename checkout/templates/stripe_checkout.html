@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+
+{% load static %}
+
+{% block Title %} | Payment{% endblock %}
+{% block head_extras %}
+<link rel="stylesheet" href="{% static 'css\stripe_checkout.css'%}"/>
+{% endblock %}
+
+{% block content%}
+<div class="container">
+    <div>
+        <p>Total Cost: £{{total}}</p>
+    </div>
+    <form action="{% url 'pay' %}" action="POST" id="payment" class="mb-2">
+        <div>
+            <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
+            <!-- A Stripe card element will go here -->
+            <div class="mb-3" id="card-element"></div>
+    
+            <!-- Used to display form errors -->
+            <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+        </div>
+        <button class="btn btn-primary " id="submit-button">submit</button>
+        <button class="btn btn-secondary" id="back-to-checkout">Go back to checkout</button>
+    </form>
+
+</div>
+
+    
+
+
+<script src="{% static  'js\stripe_elements.js' %}"></script>
+<script>
+    {{block.super}}
+    {{stripe_public_key|json_script:"id_stripe_public_key"}}
+    {{client_secret|json_script:"id_client_secret"}}
+</script>
+
+{% endblock %}
