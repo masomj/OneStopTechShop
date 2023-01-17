@@ -28,7 +28,7 @@ class order(models.Model):
     
     def update_total(self):
         self.order_total = self.orderItem.aggregate(Sum('orderitem_total'))['orderitem_total__sum']
-        self.grand_total = self.order_total + self.delivery_cost
+        self.payment_due= self.delivery_cost + self.order_total
         self.save()
     
     def save(self,*args, **kwarg ):

@@ -89,10 +89,6 @@ class editProductForm(ModelForm):
         model = Category
         fields = ['name', 'parentCategory']
 
-def admin(request):
-
-    return render(request, 'admin.html')
-
 def editCategory(request):
 
     return render()
@@ -156,26 +152,6 @@ def deleteProduct(request,product_id):
     product.delete()
     print('deleted')
     return products(request)
-
-
-def createProduct(request):
-    all_categories = Category.objects.all()
-    parent_categories = CategoryParent.objects.all()
-    form = editProductForm()
-    if request.method=='POST':
-        newProduct=editProductForm(request.POST)
-        if newProduct.is_valid():
-            newProduct.save()
-        else:
-            print('not valid')
-        return products(request)
-        
-    context={
-        'categories':all_categories,
-        'parent_categories':parent_categories,
-        'form':form
-    }
-    return render(request, 'addProduct.html',context)
 
 def admin(request):
 
