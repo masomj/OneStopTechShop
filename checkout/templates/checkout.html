@@ -10,19 +10,27 @@
     <div class="row border rounded">
         <div class="col-md-6">
             <h5>Delivery Information</h5>
+
+            <div class="container">
+                <p class="">Would you like to use your saved details?</p>
+                
+            </div>
+            
             <p class="">If you are logged in, these details are filled from your user profile. Editing the details below will not affect your saved address.</p>
-            <form action="" class="">
+            <form action="{% url 'checkout'  %}" method="POST" class="">
+                {% csrf_token %}
+                <input type="hidden" id="saved_details" data-savedDetails="False">
                 <div class="form-outline mt-2">
                     <label for="full_name" class="form-label">Full Name</label>
                     <input id="full_name" name="full_name" type="text" class="form-control" value="{{userdetails.full_name}}">
                 </div>
                 <div class="form-outline mt-2">
                     <label for="" class="form-label">Email</label>
-                    <input type="text" id="email" name="email" class="form-control" value="{{userdetails.email}}">
+                    <input type="email" id="email" name="email" class="form-control" value="{{userdetails.email}}">
                 </div>
                 <div class="form-outline mt-2">
                     <label for="" class="form-label">Phone Number</label>
-                    <input type="text" id="phone_no" name="phone_no" class="form-control" value="{{userdetails.phone_number}}">
+                    <input type="number" id="phone_no" name="phone_no" class="form-control" value="{{userdetails.phone_number}}">
                 </div>
                 <div class="form-outline mt-2">
                     <label for="" class="form-label">Country</label>
@@ -38,7 +46,7 @@
                 </div>
                 <div class="form-outline mt-2">
                     <label for="" class="form-label">City</label>
-                    <input type="text" id="city" name="town" class="form-control" value="{{userdetails.city}}">
+                    <input type="text" id="city" name="city" class="form-control" value="{{userdetails.city}}">
                 </div>
                 <div class="form-outline mt-2">
                     <label for="" class="form-label">Street</label>
@@ -46,8 +54,9 @@
                 </div>
                 <div class="form-outline mt-2 mb-5">
                     <label for="" class="form-label">House Number</label>
-                    <input type="text" id="House Number" name="house_number" class="form-control" value="{{userdetails.house_number}}">
+                    <input type="number" id="House Number" name="house_number" class="form-control" value="{{userdetails.house_number}}">
                 </div>
+                <button type="submit" class="btn btn-primary">Pay</button>
             </form>
         </div>
         <div class="col-md-6">
@@ -74,16 +83,7 @@
                 
                 {% endfor %}
                 
-                <div class="">
-                    <p>Bag Total: £<strong>{{total|floatformat:2}}</strong></p>
-                    <a href="{% url 'pay'%}" class="btn btn-primary btn-sm mb-1">Pay</a>
-                </div>
             </div>
-    </div>
-
-    <div class="row">
-        <p>Bag Total: £<strong>{{total|floatformat:2}}</strong></p>
-        <a href="#" class="btn btn-primary btn-sm mb-1">Checkout</a>
     </div>
 </div>
 

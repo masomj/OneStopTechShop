@@ -162,11 +162,8 @@ def createProduct(request):
     all_categories = Category.objects.all()
     parent_categories = CategoryParent.objects.all()
     form = editProductForm()
-   
     if request.method=='POST':
-
         newProduct=editProductForm(request.POST)
-
         if newProduct.is_valid():
             newProduct.save()
         else:
