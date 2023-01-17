@@ -1,6 +1,8 @@
-var stripePublicKey = $('#id_stripe_public_key').text();
-var clientSecret = $('#id_client_secret').text().slice(1, -1);
-var stripe = Stripe('pk_test_51MNy5pIYfXdzWSz6Q6WKKrxPDjm2L37PotdNWb2r4h568jU6gielmhJVVNfRlbut0rf64SVTzQQRm1PaZI80C1zK00cm3tKVHb');
+
+var stripePublicKey = JSON.parse(document.getElementById('id_stripe_public_key').textContent);
+var clientSecret = JSON.parse(document.getElementById('id_client_secret').textContent);
+console.log(clientSecret)
+var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
 var style = {
     base: {
@@ -39,14 +41,16 @@ card.addEventListener('change', function (event) {
     }
 });
 
-var form = document.getElementById('payment-form')
+var form = document.getElementById('payment')
 
-form.addEventListener(submit, function (evnt) {
+form.addEventListener('submit', function(evnt){
         evnt.preventDefault();
         card.update({
             'disabled': true
         })
         $('#submit-button').attr('disabled', true)
+        $('#payment').fadeToggle(100);
+        $('#loading-overlay').fadeToggle(100);
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
@@ -61,14 +65,16 @@ form.addEventListener(submit, function (evnt) {
                 </span>
                 <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
+                $('#payment-form').fadeToggle(100);
+                $('#loading-overlay').fadeToggle(100);
                 card.update({
                     'disabled': false
                 })
                 $('#submit-button').attr('disabled', false)
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
-                    console.log('successful payment');
                     form.submit();
+                    
                 }
 
 
