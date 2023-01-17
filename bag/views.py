@@ -43,7 +43,7 @@ def remove_item(request, product_id):
     bag.pop(product_id)
     request.session['bag'] = bag
 
-    return render(request,'view_bag.html')
+    return redirect(reverse('bag'))
 
 
 
