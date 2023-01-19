@@ -4,6 +4,8 @@ from .models import Product, Category, CategoryParent
 from django.db.models import Q
 from django.forms import ModelForm, Textarea
 from django.contrib.auth.decorators import login_required
+from reviews.models import review
+import random
 
 # Create your views here.
 
@@ -67,10 +69,20 @@ def productInfo(request,product_id):
     product = get_object_or_404(Product, pk = product_id)
     all_categories = Category.objects.all()
     parent_categories = CategoryParent.objects.all()
+    all_reviews = review.objects.filter(product = product)
+    print(all_reviews)
+    if all_reviews.count() > 3:
+        reviews = random.sample(all_reviews, 3)
+    else:
+        reviews = all_reviews
+    
     context={
         'product':product,
         'categories':all_categories,
         'parent_categories':parent_categories,
+        'reviews':reviews
+        
+        
     }
     return render(request,'productInfo.html',context)
 
