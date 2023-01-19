@@ -153,6 +153,7 @@ def deleteProduct(request,product_id):
     print('deleted')
     return products(request)
 
+
 def admin(request):
 
     return render(request, 'admin.html')

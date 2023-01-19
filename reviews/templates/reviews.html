@@ -28,12 +28,12 @@
         </div>
     </div>
     <form action="{% url 'review' product.id %}" method="POST">
-        <div class="form-outline">
-            <label for="review" class="form-label">Review:</label>
+        {% csrf_token %}
+        <div class="form-outline mt-5">
+            <label for="review" class="d-block">Review:</label>
             <textarea name="review" id="review" cols="60" rows="10"></textarea>
-            <small>5000 Characters</small>
+            <small class="d-block">5000 Characters</small>
         </div>
-
         <div class="form-outline">
             <span class="rating_stars rating_0">
                 <span class='s' data-low='0.5' data-high='1'><i class="fa fa-star-o"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star"></i></span>
@@ -53,10 +53,11 @@
                 <span class='r r4_5' data-rating='45' data-value='4.5'></span>
                 <span class='r r5' data-rating='5' data-value='5'></span>
               </span>
-              <input type="number" class="d-none" id="rating_val" value=0>
-              
+              <input type="number" name="rating" class="d-none" id="rating_val" value=0>
         </div>
-    </form>
+        <button type="submit" class="btn btn-primary">submit</button>
+        
+</form>
 </div>
 <script type="text/javascript" src="{% static 'js\star_rating.js' %}"></script>
 {% endblock %}

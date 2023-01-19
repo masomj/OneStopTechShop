@@ -1,6 +1,9 @@
 from email.policy import default
 from unicodedata import category
 from django.db import models
+from django.db.models import Sum
+from reviews.models import review
+
 
 
 
@@ -36,4 +39,12 @@ class Product(models.Model):
     def __str__(self):
         return self.title
     
+    def update_average_rating(self):
+        product_reviews_count = review.objects.filter(product=self).count()
+        rating_sum = review.objects.filter(product=self).aggregate(Sum('rating'))['rating__sum']
+        print(rating_sum)
+        self.average_rating = rating_sum / product_reviews_count
+        self.reviews_count = product_reviews_count
+        self.save()
+        
     

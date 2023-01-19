@@ -8,16 +8,16 @@ from .models import review
 @login_required
 def leave_a_review(request, product_id):
     product = get_object_or_404(Product, pk = product_id)
-    if request.method == "POST":
-        
-        
+    if request.method == 'POST':
+        print('post')
         review_obj = review.objects.create(
             user_id = request.user,
             rating = request.POST['rating'],
-            review = request.POST['rating_val'],
+            review = request.POST['review'],
             product = product,
         )
         review_obj.save()
+        return redirect(reverse('products'))
         
     
     context = {
