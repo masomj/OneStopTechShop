@@ -1,0 +1,62 @@
+{%extends 'base.html'%}
+
+{% load static %}
+
+{% block Title %} | Write a Review{% endblock %}
+{% block head_extras %}
+<link rel="stylesheet" href="{% static 'css\star_rating.css' %}">
+{% endblock %}
+
+{% block content%}
+<div class="container">
+    <h3>Write a Review</h3>
+    <div class="container">
+        <div class="row w-100">
+            <div class="card mt-2">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{product.images}}" alt="{{product.title}}" class="img-fluid rounded-start">
+                    </div>
+                    <div class="col-md-8">
+                        <h6 class="card-title">{{product.title}}</h6>
+                        <p class="card-text">Price: <small class="text-muted">£{{product.price}}</small></p>
+                        <p class="card-text">{{product.description}}</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <form action="{% url 'review' product.id %}" method="POST">
+        <div class="form-outline">
+            <label for="review" class="form-label">Review:</label>
+            <textarea name="review" id="review" cols="60" rows="10"></textarea>
+            <small>5000 Characters</small>
+        </div>
+
+        <div class="form-outline">
+            <span class="rating_stars rating_0">
+                <span class='s' data-low='0.5' data-high='1'><i class="fa fa-star-o"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star"></i></span>
+                <span class='s' data-low='1.5' data-high='2'><i class="fa fa-star-o"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star"></i></span>
+                <span class='s' data-low='2.5' data-high='3'><i class="fa fa-star-o"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star"></i></span>
+                <span class='s' data-low='3.5' data-high='4'><i class="fa fa-star-o"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star"></i></span>
+                <span class='s' data-low='4.5' data-high='5'><i class="fa fa-star-o"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star"></i></span>
+                                      
+                <span class='r r0_5' data-rating='1' data-value='0.5'></span>
+                <span class='r r1' data-rating='1' data-value='1'></span>
+                <span class='r r1_5' data-rating='15' data-value='1.5'></span>
+                <span class='r r2' data-rating='2' data-value='2'></span>
+                <span class='r r2_5' data-rating='25' data-value='2.5'></span>
+                <span class='r r3' data-rating='3' data-value='3'></span>
+                <span class='r r3_5' data-rating='35' data-value='3.5'></span>
+                <span class='r r4' data-rating='4' data-value='4'></span>
+                <span class='r r4_5' data-rating='45' data-value='4.5'></span>
+                <span class='r r5' data-rating='5' data-value='5'></span>
+              </span>
+              <input type="number" class="d-none" id="rating_val" value=0>
+              
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="{% static 'js\star_rating.js' %}"></script>
+{% endblock %}

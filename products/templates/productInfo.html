@@ -56,7 +56,7 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
 
-                                    <button class="decrement-qty btn btn-primary h-100 data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                    <button class="decrement-qty btn btn-primary h-100" data-item_id='{{ product.id }}' id='decrement-qty_{{ product.id }}'>
                                         <span class="icon">
                                             <i class="fas fa-minus"></i>
                                         </span>
@@ -90,6 +90,7 @@
                     {% endwith %}
                 </div>
             </form>
+            <a href="{% url 'review' product.id %}" class="btn btn-primary"></a>
         </div>
     </div>
 </div>

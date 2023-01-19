@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount', # new
     'userprofile',
     'checkout',
-    'mathfilters'
+    'mathfilters', # provide math functionality inside a template
+    'reviews'
 ]
 
 MIDDLEWARE = [

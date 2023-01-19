@@ -25,5 +25,3 @@ urlpatterns = [
     path('remove_item/<product_id>',views.remove_item,name='remove_item')
    
 ]
-
-urlpatterns += staticfiles_urlpatterns()
