@@ -53,8 +53,6 @@ def checkout(request):
 
 
 def pay(request):
-   
-    
     current_bag = bag_contents(request)
     total = current_bag['total']
     stripe_total = round(total * 100) # convert £ value to pence
@@ -72,10 +70,12 @@ def pay(request):
     }
     
     ## if successful statement
+    
     if request.method =='POST':
         bag = request.session.get('bag',{})
         bag.clear()
         request.session['bag'] = bag
+        
         return redirect(reverse('products'))
     
     return render(request,'stripe_checkout.html', context)

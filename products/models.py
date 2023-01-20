@@ -31,7 +31,7 @@ class Product(models.Model):
     currency=models.CharField(max_length=254,null=True, blank=True)
     images=models.URLField(null=True,blank=True)
     category=models.ForeignKey('Category',null=True, blank=True, on_delete=models.SET_NULL)
-    description=models.CharField(max_length=1024, null=True, blank=True)
+    description=models.CharField(max_length=10000, null=True, blank=True)
     average_rating=models.CharField(max_length=254,null=True, blank=True)
     reviews_count= models.IntegerField(null=True, blank=True)
     has_sizes = models.BooleanField(default=False, null=True, blank=True)
