@@ -72,10 +72,8 @@ form.addEventListener('submit', function(evnt){
                     'disabled': false
                 })
                 $('#submit-button').attr('disabled', false)
-                console.log(result.error)
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
-                    console.log('success')
                     form.submit();
                     
                 }
