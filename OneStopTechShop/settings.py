@@ -26,14 +26,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 #stripe 
 STRIPE_CURRENCY = 'gbp'
-STRIPE_PUBLISHABLE_KEY = env('STRIPE_PUBLISHABLE_KEY')
-STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-SECRET_KEY = ('SECRET_KEY')
+DEBUG = 'DEVELOPMENT' in os.environ
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'one-stop-tech-shop.herokuapp.com','localhost'
+]
 
 # Application definition
 MEDIA_ROOT = 'OneStopTechShop/media/'
@@ -98,7 +100,7 @@ WSGI_APPLICATION = 'OneStopTechShop.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(env('database_url')) }
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL')) }
 
 
 # Password validation
