@@ -20,8 +20,11 @@ environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 import django
-from django.utils.encoding import force_str
+from django.utils.encoding import force_str, smart_str
 django.utils.encoding.force_text = force_str
+django.utils.encoding.smart_text = smart_str
+
+
 
 
 # Quick-start development settings - unsuitable for production
