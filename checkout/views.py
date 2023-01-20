@@ -12,7 +12,6 @@ import stripe
 # Create your views here
 def checkout(request):    
     
-    
     if request.user.is_authenticated:
         logged_in_user = request.user.id
         userObj = get_object_or_404(User, pk=logged_in_user)
@@ -36,11 +35,11 @@ def checkout(request):
             country=request.POST['country'],
             town = request.POST['town'],
           )
+        if request.user.is_authenticated:
+            order_details.user = request.user
         order_details.save()
         
         for item_id, item_data in bag.items():
-            print(item_id)
-            print(item_data)
             product=Product.objects.get(id=item_id)
             orderitem = orderItem.objects.create(
                 order = order_details,
@@ -50,8 +49,6 @@ def checkout(request):
             orderitem.save()
             request.session['order_id'] = order_details.id
         return redirect(reverse('pay'))
-   
-
     return render(request,'checkout.html', context)
 
 

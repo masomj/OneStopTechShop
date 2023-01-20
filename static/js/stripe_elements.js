@@ -1,7 +1,6 @@
 
 var stripePublicKey = JSON.parse(document.getElementById('id_stripe_public_key').textContent);
 var clientSecret = JSON.parse(document.getElementById('id_client_secret').textContent);
-console.log(clientSecret)
 var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
 var style = {
@@ -42,8 +41,11 @@ card.addEventListener('change', function (event) {
 });
 
 var form = document.getElementById('payment')
+var submit = document.getElementById('submit-button')
 
 form.addEventListener('submit', function(evnt){
+    var errorDiv = document.getElementById('card-errors')
+        submit.preventDefault();
         evnt.preventDefault();
         card.update({
             'disabled': true
@@ -58,7 +60,6 @@ form.addEventListener('submit', function(evnt){
             }
         }).then(function (result) {
             if (result.error) {
-                console.log(result.error.message);
                 var html = `
                 <span class="icon" role="alert">
                     <i class="fas fa-time"> </i>
@@ -71,8 +72,10 @@ form.addEventListener('submit', function(evnt){
                     'disabled': false
                 })
                 $('#submit-button').attr('disabled', false)
+                console.log(result.error)
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
+                    console.log('success')
                     form.submit();
                     
                 }
