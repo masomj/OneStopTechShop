@@ -1,1 +1,1 @@
-web: gunicorn onestoptechshop.wsgi:application
+web: gunicorn OneStopTechShop.wsgi:application
