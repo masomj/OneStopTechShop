@@ -54,6 +54,6 @@ sqlparse==0.4.2
 stripe==5.0.0
 tzdata==2022.1
 unicorn==2.0.0
-urllib3==1.26.9
+urllib3==1.25.7
 virtualenv==20.14.1
 Werkzeug==2.1.2
