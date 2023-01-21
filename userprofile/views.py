@@ -3,6 +3,7 @@ from .models import userDetails
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from checkout.models import order
+from django.contrib import messages
 
 
 # Create your views here.
@@ -40,7 +41,11 @@ def profile(request):
 
 @login_required
 def view_orders(request):
-    users_orders = order.objects.filter(user = request.user) 
+    users_orders = order.objects.filter(user = request.user)
+    if users_orders.count() < 1 :
+        messages.warning(request, 'You have no previous orders.')
+        return redirect(reverse('profile'))
+    
     context = {
         'user_orders':users_orders
         

@@ -20,6 +20,7 @@ def products(request):
     parent_categories = CategoryParent.objects.all()
     
     
+    
     if request.GET:
         
         if 'sort' in request.GET:
