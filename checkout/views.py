@@ -15,7 +15,7 @@ def checkout(request):
     if request.user.is_authenticated:
         logged_in_user = request.user.id
         userObj = get_object_or_404(User, pk=logged_in_user)
-        userdetails = get_object_or_404(userDetails, user_id=userObj.id)
+        userdetails = userDetails.objects.filter(user_id=userObj)
         context ={
         'userdetails':userdetails
         }
