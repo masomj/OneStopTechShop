@@ -9,7 +9,7 @@ class userDetails(models.Model):
     email = models.CharField(max_length=256, blank=True)
     postcode = models.CharField(max_length=7, default="", blank=True)
     house_number=models.IntegerField()
-    phone_number=models.IntegerField()
+    phone_number=models.CharField(max_length=11, default="", blank=True)
     street_name=models.CharField(max_length=256,default="", blank=True)
     city=models.CharField(max_length=256, default="", blank=True)
     country=models.CharField(max_length=256,default="",blank=True)
