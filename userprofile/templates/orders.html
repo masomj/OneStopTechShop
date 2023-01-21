@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+
+{% load static %}
+
+{% block Title %} | View Orders{% endblock %}
+
+
+{% block content%}
+<div class="container">
+    <div class="accordion" id="accordion">
+        {% for user_order in user_orders %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading{{user_order.id}}">
+                <button class="accordion-button" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapse{{user_order.id}}"
+                    aria-expanded="true" aria-controls="collapse{{user_order.id}}">
+                    {{user_order.date}}
+                </button>
+            </h2>
+            <div id="collapse{{user_order.id}}" class="accordion-collapse collapse show" aria-labelledby="heading{{user_order.id}}"
+                data-mdb-parent="#accordion">
+                <div class="accordion-body">
+                    {% for order_item in user_order.orderItem.all %}
+                    <div class="container">
+                        <div class="row w-100">
+                            <div class="card mt-2">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="{{order_item.product.images}}" alt="{{order_item.product.title}}" class="img-fluid rounded-start">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h6 class="card-title">{{order_item.product.title}}</h6>
+                                        <p class="card-text">Quantity:<small class="text-muted"></small> {{order_item.quantity}}</small></p>
+                                        <p class="card-text">Price: <small class="text-muted">£{{order_item.product.price}}</small></p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from .models import userDetails
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from checkout.models import order
 
 
 # Create your views here.
@@ -37,5 +38,14 @@ def profile(request):
     
     return render(request, 'profile.html',context)
 
+@login_required
+def view_orders(request):
+    users_orders = order.objects.filter(user = request.user) 
+    context = {
+        'user_orders':users_orders
+        
+    }
+    
+    return render(request,'orders.html', context)
 
 
