@@ -69,3 +69,7 @@ body{
     height: 0;
   }
 }
+
+.inherit-border input {
+  border-radius: 0.5rem;
+}
