@@ -18,9 +18,6 @@ def products(request):
     query = None
     all_categories = Category.objects.all()
     parent_categories = CategoryParent.objects.all()
-    
-    
-    
     if request.GET:
         
         if 'sort' in request.GET:

@@ -41,23 +41,29 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav">
                     {% if request.user.is_staff %}
-                    <li class="nav-item"><a href="{% url 'admin' %}" class="nav-link active text-white"></a></li>
+                        <li class="nav-item"><a href="{% url 'admin' %}" class="nav-link active text-white">Admin</a></li>
                     {% endif %}
                     <li class="nav-item"><a class="nav-link active text-white" href="{%url 'products'%}">Shop</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="{% url 'bag' %}"><i
                                 class="fa fa-shopping-bag" aria-hidden="true"></i> Bag</a></li>
-
-                    <li class="nav-item">
-                        <ul class="navbar-nav">
-                            <a class="dropdown-toggle text-white nav-link" href="#" role="button" id="dropdownMenuLink"
-                                data-mdb-toggle="dropdown" aria-expanded="false">
-                                Profile
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="{% url 'profile' %}">My Account</a></li>
-                                <li><a class="dropdown-item" href="{% url 'previousorders' %}">Previous Orders</a></li>
-                            </ul>
-                    </li>
+                    {% if request.user.is_authenticated%}
+                        <li class="nav-item">
+                            <ul class="navbar-nav">
+                                <a class="dropdown-toggle text-white nav-link" href="#" role="button" id="dropdownMenuLink"
+                                    data-mdb-toggle="dropdown" aria-expanded="false">
+                                    Profile
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{% url 'profile' %}">My Account</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'previousorders' %}">Previous Orders</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                                </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'account_login' %}" class="nav-link active text-white">Login</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
 
