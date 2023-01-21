@@ -33,8 +33,8 @@ django.utils.encoding.smart_text = smart_str
 # SECURITY WARNING: keep the secret key used in production secret!
 #stripe 
 STRIPE_CURRENCY = 'gbp'
-STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY','')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY','')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
