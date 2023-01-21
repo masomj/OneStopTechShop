@@ -2,8 +2,13 @@ from django.shortcuts import render,redirect,reverse,HttpResponse
 from django.contrib import messages
 
 def bag(request):
-
-    return render(request,'view_bag.html')
+    bag = request.session.get('bag',{})
+    is_empty = bool(bag)
+    if is_empty == False:
+        messages.warning(request, 'You have no items in your bag. Please add a product to continue.')
+        return redirect(reverse('products'))
+    elif is_empty == True:
+        return render(request,'view_bag.html')
 
 def add_to_bag(request, product_id):
     quantity = int(request.POST.get('quantity'))
