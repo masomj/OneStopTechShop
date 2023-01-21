@@ -60,6 +60,13 @@ body{
 .custom-toast {
   animation: hideAnimation 0s ease-in 10s;
   animation-fill-mode: forwards;
+  z-index: 999;
+  width: 100%;
+  height:auto;
+  position: absolute;
+  top: -10;
+  right:5;
+  opacity: 1;
 }
 
 @keyframes hideAnimation {
@@ -73,3 +80,4 @@ body{
 .inherit-border input {
   border-radius: 0.5rem;
 }
+
