@@ -3,6 +3,7 @@ from django.db.models.functions import Lower
 from .models import Product, Category, CategoryParent
 from django.db.models import Q
 from django.forms import ModelForm, Textarea
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from reviews.models import review
 import random

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One Stop Tech Shop {% block Title%} {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css\style.css' %}">
-    <link rel="stylesheet" href="{% static  'css\mdb.min.css' %}"/>
+    <link rel="stylesheet" href="{% static  'css\mdb.min.css' %}" />
     {% block JS %}
     {% endblock %}
 
@@ -41,22 +41,23 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav">
                     {% if request.user.is_staff %}
-                        <li class="nav-item"><a href="{% url 'admin' %}" class="nav-link active text-white"></a></li>
+                    <li class="nav-item"><a href="{% url 'admin' %}" class="nav-link active text-white"></a></li>
                     {% endif %}
                     <li class="nav-item"><a class="nav-link active text-white" href="{%url 'products'%}">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'bag' %}"><i class="fa fa-shopping-bag"
-                            aria-hidden="true"></i>  Bag</a></li>
-                        
-                    <li class="nav-item"><ul class="navbar-nav">
-                        <a class="dropdown-toggle text-white nav-link" href="#" role="button" id="dropdownMenuLink"
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'bag' %}"><i
+                                class="fa fa-shopping-bag" aria-hidden="true"></i> Bag</a></li>
+
+                    <li class="nav-item">
+                        <ul class="navbar-nav">
+                            <a class="dropdown-toggle text-white nav-link" href="#" role="button" id="dropdownMenuLink"
                                 data-mdb-toggle="dropdown" aria-expanded="false">
                                 Profile
-                    </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">View Orders</a></li>
-                            <li><a class="dropdown-item" href="{% url 'profile' %}">My Account</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">View Orders</a></li>
+                                <li><a class="dropdown-item" href="{% url 'profile' %}">My Account</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
                     </li>
                 </ul>
             </div>
@@ -104,6 +105,24 @@
         </nav>
     </header>
     <main class="max-width">
+        <div class="container-fluid d-flex justify-content-end">
+            {% if messages %}
+                {% for message in messages %}
+                    {% with message.level as level %}
+                        {% if level == 40 %}
+                            {% include 'includes/toasts/toast_error.html' %}
+                        {% elif level == 30 %}
+                            {% include 'includes/toasts/toast_warning.html' %}
+                        {% elif level == 25 %}
+                            {% include 'includes/toasts/toast_success.html' %}
+                        {% else %}
+                            {% include 'includes/toasts/toast_info.html' %}
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            {% endif %}
+        </div>
+
         {% block content %}
         {% endblock %}
     </main>
@@ -116,6 +135,7 @@
         </div>
     </footer>
 </body>
+<script type="text/javascript" src="{% static 'js\toasts.js' %}"></script>
 <script type="text/javascript" src="{% static 'js\mdb.min.js' %}"></script>
 
 <script>
