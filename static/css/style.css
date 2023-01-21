@@ -38,6 +38,8 @@ body{
   display: block;
 }
 
+
+
 #loading-overlay {
 	display: none;
 	position: fixed;
