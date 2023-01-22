@@ -45,12 +45,12 @@
             {% for product in products %}
             <div class="col-sm-6 col-md-6 col-lg-4 mt-3 mb-2">
                 <div class="card  h-100 border-1 bg-light">
-                    {% if product.images %}
+                    {% if product.image_url %}
                     <a href="{% url 'productInfo' product.id %}">
-                        <img src="{{product.images}}" alt="{{ product.name }}" class="card-img-top img-fluid">
+                        <img src="{{product.image_url}}" alt="{{ product.name }}" class="card-img-top img-fluid">
                     </a>
                     {% else %}
-                        <a href="{% url 'productInfo' product.id %}"><p> image</p></a>
+                        <a href="{% url 'productInfo' product.id %}"></a>
                     {% endif %}
                     <div class="card-body pb-0">
                         <p class="mb-0">{{product.title}}</p>
