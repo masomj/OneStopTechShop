@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+
+{% load static %}
+
+{% block Title %} | Edit Parent Category{% endblock %}
+{% block content%}
+<div class="container">
+    <h2>Edit Category{% if form %}<small> | {{form.name.value}} </small>{% endif%}</h2>
+    
+    <div class="">
+        <form action ="{% url 'editCategoryDetails' selected_category.id %}" method="POST" class="">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="submit" class="btn btn-primary">
+        </form>
+      
+    </div>
+    
+</div>
+
+{% endblock %}

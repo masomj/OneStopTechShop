@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
 from reviews.models import review
-from .forms import editProductForm, editCategoryForm, categorySelector
+from .forms import editProductForm, editCategoryForm, categorySelector, editParentCategoryForm, parentCategorySelector
 import random
 def staff_required(login_url = None):
     return user_passes_test(lambda u: u.is_staff,login_url=login_url)
@@ -92,41 +92,108 @@ def productInfo(request,product_id):
         
     }
     return render(request,'productInfo.html',context)
-
+@staff_required(login_url="/accounts/login")
+def editCategoryDetails(request,category_id):
+    if request.method == 'POST':
+        category_to_edit = get_object_or_404(Category, pk=category_id)
+        edited_form = editCategoryForm(request.POST, instance=category_to_edit)
+        if edited_form.is_valid():
+            edited_form.save()
+        
+        return redirect(reverse('products'))
 
 @staff_required(login_url="/accounts/login")
 def editCategory(request):
 
     if request.method == 'POST': 
-      
-        selected_category = request.POST['category']
-        category_to_edit = get_object_or_404(Category, pk=selected_category)
-        form=editCategoryForm(instance=category_to_edit)
-        edited_form = editCategoryForm(request.POST, instance=category_to_edit)
-        if edited_form.is_valid():
-            edited_form.save()
-            return redirect(reverse('admin'))
-        context ={
-        'form':form,
+        if 'category' in request.POST:
+            selected_category = request.POST['category']
+            category_to_edit = get_object_or_404(Category, pk=selected_category)
+            form=editCategoryForm(instance=category_to_edit)
+            context ={
+            'form':form,
+            'selected_category':category_to_edit
+            
+        } 
+            return render(request,'editCategoryDetails.html', context)
+
+    else:
+            category_selector = categorySelector()
+            context ={
+            'category_selector':category_selector,
+            
         }
-    else: 
-        category_selector = categorySelector()
-        context ={
-        'category_selector':category_selector,
-        
-    }
     
     
     return render(request, 'editCategory.html', context)
 
 @staff_required(login_url="/accounts/login")
-def createCategory(request):
+def editParentCategoryDetails(request,category_id):
+    if request.method == 'POST':
+        category_to_edit = get_object_or_404(CategoryParent, pk=category_id)
+        edited_form = editParentCategoryForm(request.POST, instance=category_to_edit)
+        if edited_form.is_valid():
+            edited_form.save()
+        
+        return redirect(reverse('products'))
 
-    return render()
 @staff_required(login_url="/accounts/login")
-def deleteCategory(request):
-     
-    return render()
+def editParentCategory(request):
+    if request.method == 'POST': 
+        if 'parentCategory' in request.POST:
+            selected_category = request.POST['parentCategory']
+            category_to_edit = get_object_or_404(CategoryParent, pk=selected_category)
+            form=editParentCategoryForm(instance=category_to_edit)
+            context ={
+            'form':form,
+            'selected_category':category_to_edit
+            
+        } 
+            return render(request,'editParentCategoryDetails.html', context)
+        elif 'name' in request.POST:
+                edited_form = editParentCategoryForm(request.POST)
+                print(category_to_edit)
+                if edited_form.is_valid():
+                    edited_form.save()
+                    print(edited_form)
+                    print('saved')
+                    return redirect(reverse('admin'))  
+    else:
+        category_selector = parentCategorySelector()
+        context ={
+        'category_selector':category_selector,
+        
+    }
+    return render(request,'editParentcategory.html', context )
+@staff_required(login_url="/accounts/login")
+def createParentCategory(request):
+    form = editParentCategoryForm()
+    if request.method == 'POST':
+        newCat = editParentCategoryForm(request.POST)
+        if newCat.is_valid():
+            newCat.save()
+            messages.success(request, 'Parent Category Added')
+            return redirect(reverse('admin'))
+    context= {
+       'form':form
+    }
+    return render(request, 'addParentCategory.html', context)
+
+
+@staff_required(login_url="/accounts/login")
+def createCategory(request):
+    form = editCategoryForm()
+    if request.method == 'POST':
+        newCat = editCategoryForm(request.POST)
+        if newCat.is_valid():
+            newCat.save()
+            messages.success(request, 'Category Added')
+            return redirect(reverse('admin'))
+    context= {
+       'form':form
+    }
+    return render(request, 'addCategory.html', context)
+
 @staff_required(login_url="/accounts/login")
 def createProduct(request):
     all_categories = Category.objects.all()
@@ -139,6 +206,7 @@ def createProduct(request):
 
         if newProduct.is_valid():
             newProduct.save()
+            messages.success(request, 'Product Added')
         else:
             print('not valid')
         return products(request)
@@ -162,10 +230,10 @@ def editProduct(request, product_id):
         
         if edits.is_valid():
             edits.save()
+            messages.success(request, 'Product Changed')
         else:
             messages.warning(request,'Form Not valid')
             return redirect(reverse('editProduct'))
-    return products(request)
 
     context={
         'product':product,
@@ -178,7 +246,7 @@ def editProduct(request, product_id):
 def deleteProduct(request,product_id):
     product = get_object_or_404(Product, pk = product_id)
     product.delete()
-    print('deleted')
+    messages.success(request,'Product Deleted')
     return products(request)
 
 @staff_required(login_url="/accounts/login")

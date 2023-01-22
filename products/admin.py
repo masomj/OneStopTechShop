@@ -6,6 +6,17 @@ class reviewInline(admin.TabularInline):
     model = review
 class productAdmin(admin.ModelAdmin):
     inlines = (reviewInline,)
+
+class categoryInline(admin.TabularInline):
+    model = Category    
+class parentCategoryAdmin(admin.ModelAdmin):
+    inlines=(categoryInline,)
+
+class categoryProductInline(admin.TabularInline):
+    model = Product
+class categoryAdmin(admin.ModelAdmin):
+    inlines = (categoryProductInline,)
+
 admin.site.register(Product, productAdmin)
-admin.site.register(Category)
-admin.site.register(CategoryParent)
+admin.site.register(Category, categoryAdmin)
+admin.site.register(CategoryParent, parentCategoryAdmin)

@@ -1,8 +1,16 @@
 {%extends 'base.html'%}
 
-{% loads static %}
+{% load static %}
 
-{% block Title %} | Edit Category{% endblock %}
+{% block Title %} | Add Parent Category{% endblock %}
 
 {% block content%}
+<div class="container">
+    <h2>Add Parent Category</h2>
+    <form action="" method="POST" class="">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" class="btn btn-primary">
+    </form>
+</div>
 {% endblock %}
