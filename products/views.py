@@ -2,11 +2,19 @@ from django.shortcuts import render,redirect,reverse,get_object_or_404
 from django.db.models.functions import Lower
 from .models import Product, Category, CategoryParent
 from django.db.models import Q
-from django.forms import ModelForm, Textarea
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.admin.views.decorators import staff_member_required
+
+def staff_required(login_url = None):
+    return user_passes_test(lambda u: u.is_staff,login_url=login_url)
+
+
 from reviews.models import review
+from .forms import editProductForm, editCategoryForm
 import random
+
+
 
 # Create your views here.
 
@@ -85,33 +93,20 @@ def productInfo(request,product_id):
     }
     return render(request,'productInfo.html',context)
 
-class editProductForm(ModelForm):
-    class Meta:
-        model = Product
-        fields =['title','brand','sku','price','images','category','description','average_rating','reviews_count','has_sizes']
-        widgets = {
-            'description': Textarea(attrs={'cols': 80, 'rows': 15}),
-            'title':Textarea(attrs={'cols': 40, 'rows': 1}),
-            'images':Textarea(attrs={'cols': 80, 'rows': 1}),
-        }
 
-class editProductForm(ModelForm):
-    class Meta:
-        model = Category
-        fields = ['name', 'parentCategory']
-
+@staff_required(login_url="/accounts/login")
 def editCategory(request):
 
     return render()
-
+@staff_required(login_url="/accounts/login")
 def createCategory(request):
 
     return render()
-
+@staff_required(login_url="/accounts/login")
 def deleteCategory(request):
      
     return render()
-
+@staff_required(login_url="/accounts/login")
 def createProduct(request):
     all_categories = Category.objects.all()
     parent_categories = CategoryParent.objects.all()
@@ -132,9 +127,9 @@ def createProduct(request):
         'parent_categories':parent_categories,
         'form':form
     }
-    return render(request, 'addProduct.html',context)
+    return render(request, 'addProduct.html', context)
 
-@login_required
+@staff_required(login_url="/accounts/login")
 def editProduct(request, product_id):
     product = get_object_or_404(Product, pk = product_id)
     all_categories = Category.objects.all()
@@ -157,14 +152,14 @@ def editProduct(request, product_id):
         'form':form
     }
     return render(request,'editProduct.html',context)
-
+@staff_required(login_url="/accounts/login")
 def deleteProduct(request,product_id):
     product = get_object_or_404(Product, pk = product_id)
     product.delete()
     print('deleted')
     return products(request)
 
-
+@staff_required(login_url="/accounts/login")
 def admin(request):
 
     return render(request, 'admin.html')
