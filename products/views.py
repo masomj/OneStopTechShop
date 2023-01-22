@@ -5,14 +5,14 @@ from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
-
+from reviews.models import review
+from .forms import editProductForm, editCategoryForm, categorySelector
+import random
 def staff_required(login_url = None):
     return user_passes_test(lambda u: u.is_staff,login_url=login_url)
 
 
-from reviews.models import review
-from .forms import editProductForm, editCategoryForm
-import random
+
 
 
 
@@ -97,7 +97,28 @@ def productInfo(request,product_id):
 @staff_required(login_url="/accounts/login")
 def editCategory(request):
 
-    return render()
+    if request.method == 'POST': 
+      
+        selected_category = request.POST['category']
+        category_to_edit = get_object_or_404(Category, pk=selected_category)
+        form=editCategoryForm(instance=category_to_edit)
+        edited_form = editCategoryForm(request.POST, instance=category_to_edit)
+        if edited_form.is_valid():
+            edited_form.save()
+            return redirect(reverse('admin'))
+        context ={
+        'form':form,
+        }
+    else: 
+        category_selector = categorySelector()
+        context ={
+        'category_selector':category_selector,
+        
+    }
+    
+    
+    return render(request, 'editCategory.html', context)
+
 @staff_required(login_url="/accounts/login")
 def createCategory(request):
 
@@ -142,8 +163,9 @@ def editProduct(request, product_id):
         if edits.is_valid():
             edits.save()
         else:
-            print('not valid')
-        return products(request)
+            messages.warning(request,'Form Not valid')
+            return redirect(reverse('editProduct'))
+    return products(request)
 
     context={
         'product':product,

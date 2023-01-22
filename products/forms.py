@@ -17,3 +17,7 @@ class editCategoryForm(ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'parentCategory', ]
+class categorySelector(ModelForm):
+    class Meta:
+        model = Product
+        fields =['category']
