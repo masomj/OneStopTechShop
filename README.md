@@ -86,14 +86,14 @@ The homepage is a standard landing page, enticing the user to click and visit th
     In order to avoid staff users having access to Django's built in admin page, I implemented CRUD functionality for users with the is_staff flag. This functionality will not be visible to standard users and they are blocked from accessing the page. 
     Via this admin page, a staff user can edit any fields of the selected product and related Categories. 
     At present, a product can only be edited by entering the 'productInfo' page. If you are logged in and have 'is_staff' permissions, you will then be able to either delete or update the product.
-    The Admin page also provides update and create functionality for the Cateogory and Parent category model. I Chose not to implement the delete functionality here, as I would not like to give permissions to staf to remove entire categories of products at once. 
+    The Admin page also provides update and create functionality for the Category and Parent category model. I Chose not to implement the delete functionality here, as I would not like to give permissions to staff to remove entire categories of products at once. 
 ### User management
     I don't want staff level users to have access to manage user accounts, so for now I am leaving User account administration to the site owner, with access to the Admin console in Django. The user themselves will be able to reset their password, update their name and address without having to contact the site owner. 
 ## Testing
 ### Manual testing
-I undertook manual functionality testing continually whilst developing the site. After comepleting an aspect of the functionality, I ensured that any components of the site it interacte with worked as intended and the original function was intact also.
+I undertook manual functionality testing continually whilst developing the site. After completing an aspect of the functionality, I ensured that any components of the site it interact with worked as intended and the original function was intact also.
 
-In addition to performing the testing manually, after deploying the site to heroku, I had family members use the app as if they were buying an item. This uncovered an issue with the navigation bar, specifically the category selector. On mobile, as it originally used a :hover class selector, it didnt function as desired. I changed the style the Mega Menu it is currently. this helps with more direct category based navigation anyway. In addition, as the category selector is rendered dynamically, on every view, it would have requied the data passing to it. In order to combat this, I implemented a context processor to store the category objects.
+In addition to performing the testing manually, after deploying the site to heroku, I had family members use the app as if they were buying an item. This uncovered an issue with the navigation bar, specifically the category selector. On mobile, as it originally used a :hover class selector, it didn't function as desired. I changed the style the Mega Menu it is currently. this helps with more direct category based navigation anyway. In addition, as the category selector is rendered dynamically, on every view, it would have required the data passing to it. In order to combat this, I implemented a context processor to store the category objects.
 
 The application passed several standard validators, such as PEP8 and the W3schools HTML validator.
 
@@ -125,7 +125,7 @@ Another aspect of the performance issues is that on the product pages, nearly 30
 2. Navigate to ```https://www.elephantsql.com/``` and create an account
 3. Select new instance and follow the wizard through the set up process, ensuring you select the region closest to you
 4. Once completed, ensure you capture the database url, for the below config variables. 
-5. I would recommend doing this as soon as you spin up a new django project, rather than using the built in SQLite databse, as you will have to migrate data and models over to a new database otherwise
+5. I would recommend doing this as soon as you spin up a new django project, rather than using the built in SQLite database, as you will have to migrate data and models over to a new database otherwise
 6. In your .settings file, ensure you have the following section:
 
 ```
@@ -188,7 +188,7 @@ python3 manage.py createsuperuser
 and then enter chosen email, username and password.
 
 15. Disable 'COLLECTSTATIC' with the following code: ``` heroku config:set DISABLE_COLLECTSTATIC=1 ``` This will create and environment variable in your heroku app, so that Heroku doesn't attempt to collect the static files. As this will be done once AWS is ready for use.
-16. Add ```ALLOWED_HOSTS = ['milestone-project-04.herokuapp.com', 'localhost']``` to settings.py. You may also need to add your local development IP of '127.0.0.1'
+16. Add ```ALLOWED_HOSTS = ['<heroku Deployed app address>', 'localhost']``` to settings.py. You may also need to add your local development IP of '127.0.0.1'
 17. Add Stripe environment variables to your .env file
 18. Push to Heroku using the following command:
 ```git push heroku main``` Heroku will then attempt to build the app.
