@@ -77,7 +77,6 @@ def productInfo(request,product_id):
     all_categories = Category.objects.all()
     parent_categories = CategoryParent.objects.all()
     all_reviews = review.objects.filter(product = product)
-    print(all_reviews)
     if all_reviews.count() > 3:
         reviews = random.sample(all_reviews, 3)
     else:
@@ -152,11 +151,9 @@ def editParentCategory(request):
             return render(request,'editParentCategoryDetails.html', context)
         elif 'name' in request.POST:
                 edited_form = editParentCategoryForm(request.POST)
-                print(category_to_edit)
                 if edited_form.is_valid():
                     edited_form.save()
-                    print(edited_form)
-                    print('saved')
+                    messages.success(request,('Category Changed'))
                     return redirect(reverse('admin'))  
     else:
         category_selector = parentCategorySelector()
@@ -211,7 +208,7 @@ def createProduct(request):
             newProduct.save()
             messages.success(request, 'Product Added')
         else:
-            print('not valid')
+           messages.warning(request,('Form not valid'))
         return products(request)
         
     context={
@@ -238,8 +235,6 @@ def editProduct(request, product_id):
             edits = editProductForm(request.POST, instance=product)
             if edits.is_valid():
                 edits.save()
-                print(product)
-                print('saved')
                 messages.success(request, 'Product Changed')
                 return redirect(reverse('admin'))
             else:

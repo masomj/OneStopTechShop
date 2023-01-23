@@ -36,7 +36,6 @@ def checkout(request):
         logged_in_user = request.user.id
         userObj = get_object_or_404(User, pk=logged_in_user)
         userdetails = userDetails.objects.get(user_id=userObj)
-        print(userdetails.postcode)
         context ={
         'userdetails':userdetails
         }
@@ -61,9 +60,9 @@ def checkout(request):
         if 'order_details' in request.POST:
             if request.POST['order_details'] == 'true':
                 request.session['order_details'] = 'true'
-                print('true')
+                
             elif request.POST['order_details'] == 'false':
-                print('false')
+                
                 request.session['order_details'] = 'false'
             
         if request.user.is_authenticated:

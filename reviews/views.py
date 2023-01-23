@@ -15,7 +15,6 @@ def leave_a_review(request, product_id):
     product_orders = users_orders.filter(orderItem__product=product)
     if product_orders.count() > 0:
         if request.method == 'POST':
-            print('post')
             review_obj = review.objects.create(
                 user_id = request.user,
                 rating = request.POST['rating'],

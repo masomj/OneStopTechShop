@@ -10,9 +10,10 @@ There are differing permissions levels, allowing a staff user to manage the prod
 [Live deployment link](https://one-stop-tech-shop.herokuapp.com/)
 
 For marking purposes, the administrative account details are
+```
 Username:admin
 PW:admin
-
+```
 Any subsequent accounts the examiners want to make can be made using the UI through the main site.
 ## Table of contents
 * [Introduction](#introduction)
