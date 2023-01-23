@@ -56,6 +56,7 @@ def profile(request):
     
     return render(request, 'profile.html',context)
 
+
 @login_required
 def view_orders(request):
     users_orders = order.objects.filter(user = request.user)
@@ -69,5 +70,4 @@ def view_orders(request):
     }
     
     return render(request,'orders.html', context)
-
 
