@@ -5,11 +5,15 @@
 One Stop Tech Shop is an online store using data retrieved from a public library. It is a fully functioning e-commerce site, built using the python framework Django.
 It was styled using Material design bootstrap, which offers more functionality than standard bootstrap 5. Users of this website can find products via the category selector in the navigation bar, search for products using keywords found in the title or description and scroll through the all products page to view our full catalogue. Users can also create an account to store order history and their preferred delivery address.
 
-There are differing permissions levels, allowing a staff user to manage the products on the site. 
+There are differing permissions levels, allowing a staff user to manage the products on the site.
 
+[Live deployment link](https://one-stop-tech-shop.herokuapp.com/)
 
-[Live deployment link](https://one-stop-tech-shop.herokuapp.com/) 
+For marking purposes, the administrative account details are
+Username:admin
+PW:admin
 
+Any subsequent accounts the examiners want to make can be made using the UI through the main site.
 ## Table of contents
 * [Introduction](#introduction)
 * [UX](#ux)
