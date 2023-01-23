@@ -165,6 +165,8 @@ def editParentCategory(request):
         
     }
     return render(request,'editParentcategory.html', context )
+
+
 @staff_required(login_url="/accounts/login")
 def createParentCategory(request):
     form = editParentCategoryForm()
@@ -178,6 +180,7 @@ def createParentCategory(request):
        'form':form
     }
     return render(request, 'addParentCategory.html', context)
+
 
 
 @staff_required(login_url="/accounts/login")
@@ -217,6 +220,19 @@ def createProduct(request):
         'form':form
     }
     return render(request, 'addProduct.html', context)
+
+@staff_required(login_url="/accounts/login")
+def selectProduct(request, product_id):
+    products = Product.objects.all()
+
+    if request.method == 'POST':
+        
+        return (editProduct(request, product_id))
+    context={
+    'products':products
+}
+
+    return render( request, 'selectProduct.html',context)
 
 @staff_required(login_url="/accounts/login")
 def editProduct(request, product_id):
