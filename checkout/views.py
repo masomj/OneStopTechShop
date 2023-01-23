@@ -8,6 +8,16 @@ from products.models import Product
 import stripe
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
+import json
+from userprofile.models import userDetails
+from django.contrib import messages
+
+class Object:
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, 
+            sort_keys=True, indent=4)
+
+
 def completedCheckout(request, order_id): 
     current_order = get_object_or_404(order, pk=order_id)  
     ordered_items = orderItem.objects.filter(order = current_order)
@@ -19,13 +29,14 @@ def completedCheckout(request, order_id):
     return render(request, 'successfulOrder.html',context)
     
 
-# Create your views here
+
 def checkout(request):    
     
     if request.user.is_authenticated:
         logged_in_user = request.user.id
         userObj = get_object_or_404(User, pk=logged_in_user)
-        userdetails = userDetails.objects.filter(user_id=userObj)
+        userdetails = userDetails.objects.get(user_id=userObj)
+        print(userdetails.postcode)
         context ={
         'userdetails':userdetails
         }
@@ -34,17 +45,27 @@ def checkout(request):
         }
     if request.method == 'POST':
         bag = request.session.get('bag',{})
-        order_details = order.objects.create(
-            postcode = request.POST['postcode'],
-            house_number = request.POST['house_number'],
-            street_name=request.POST['street_name'],
-            city=request.POST['city'],
-            full_name = request.POST['full_name'],
-            email = request.POST['email'],
-            phone_number = request.POST['phone_no'],
-            country=request.POST['country'],
-            town = request.POST['town'],
-          )
+       
+        order_details = order.objects.create()
+        
+        order_details.postcode = request.POST['postcode']
+        order_details.house_number = request.POST['house_number']
+        order_details.street_name=request.POST['street_name']
+        order_details.city=request.POST['city']
+        order_details.full_name = request.POST['full_name']
+        order_details.email = request.POST['email']
+        order_details.phone_number = request.POST['phone_no']
+        order_details.country=request.POST['country']
+        order_details.town = request.POST['town']
+          
+        if 'order_details' in request.POST:
+            if request.POST['order_details'] == 'true':
+                request.session['order_details'] = 'true'
+                print('true')
+            elif request.POST['order_details'] == 'false':
+                print('false')
+                request.session['order_details'] = 'false'
+            
         if request.user.is_authenticated:
             order_details.user = request.user
         order_details.save()
@@ -59,6 +80,8 @@ def checkout(request):
             orderitem.save()
             request.session['order_id'] = order_details.id
         return redirect(reverse('pay'))
+    
+    
     return render(request,'checkout.html', context)
 
 
@@ -87,8 +110,39 @@ def pay(request):
         msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
         msg.send()
-        
-        
+        if request.session['order_details'] == 'true':
+            if request.user:
+                logged_in_user = request.user
+                userdetails=userDetails.objects.get(user_id = logged_in_user)
+                if userdetails:
+                    userdetails.postcode = pending_order.postcode
+                    userdetails.house_number = pending_order.house_number
+                    userdetails.street_name=pending_order.street_name
+                    userdetails.city=pending_order.city
+                    userdetails.full_name = pending_order.full_name
+                    userdetails.email = pending_order.email
+                    userdetails.phone_number = pending_order.phone_number
+                    userdetails.country=pending_order.country
+                    userdetails.town = pending_order.town
+                    userdetails.save()
+                else:
+                    userdetails = userDetails()
+                    userdetails.user_id = request.user
+                    userdetails.postcode =pending_order.postcode
+                    userdetails.house_number = pending_order.house_number
+                    userdetails.street_name=pending_order.street_name
+                    userdetails.city=pending_order.city
+                    userdetails.full_name = pending_order.full_name
+                    userdetails.email = pending_order.email
+                    userdetails.phone_number = pending_order.phone_number
+                    userdetails.country=pending_order.country
+                    userdetails.town = pending_order.town
+                    userdetails.save() 
+            else:
+                messages.warning(request,'You must create an account to save your details')
+                
+            
+                 
         bag = request.session.get('bag',{})
         bag.clear()
         request.session['bag'] = bag
