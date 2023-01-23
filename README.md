@@ -7,8 +7,8 @@ It was styled using Material design bootstrap, which offers more functionality t
 
 There are differing permissions levels, allowing a staff user to manage the products on the site. 
 
-![Homepage](/docs/img/responsive)
-Live deployment link
+
+[Live deployment link](https://one-stop-tech-shop.herokuapp.com/) 
 
 ## Table of contents
 * [Introduction](#introduction)
@@ -16,8 +16,6 @@ Live deployment link
 * [Design](#design)
 * [Deployment](#deployment)
 * [Site Management](#site-management)
-* [UX](#ux)
-
 
 
 ## Ux
