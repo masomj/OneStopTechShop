@@ -6,8 +6,18 @@ from bag.contexts import bag_contents
 from .models import order, orderItem
 from products.models import Product
 import stripe
-
-
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+def completedCheckout(request, order_id): 
+    current_order = get_object_or_404(order, pk=order_id)  
+    ordered_items = orderItem.objects.filter(order = current_order)
+    context = {
+        'order':current_order,
+        'ordered_items':ordered_items
+    }
+    
+    return render(request, 'successfulOrder.html',context)
+    
 
 # Create your views here
 def checkout(request):    
@@ -72,11 +82,19 @@ def pay(request):
     ## if successful statement
     
     if request.method =='POST':
+        subject, from_email, to = 'Order Summary', 'onestoptechclinic@gmail.com',f'{pending_order.email}'
+        html_content = f'<h3> Thanks for your order </h3><div><p>The total cost is £ {pending_order.payment_due}</p></div><div><p>The order reference number is {pending_order.order_number}</p></div><div>If You believe there has been an error, please reach out to our support team by replying to this email.</div><div><h4>One Stop Tech Shop</h4></div>'
+        msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+        
+        
         bag = request.session.get('bag',{})
         bag.clear()
         request.session['bag'] = bag
-        
-        return redirect(reverse('products'))
+        pending_order.payed = True
+        pending_order.save()
+        return redirect(reverse('completedCheckout', args=[pending_order.id] ))
     
     return render(request,'stripe_checkout.html', context)
     

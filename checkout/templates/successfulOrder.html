@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+
+{% load static %}
+
+{% block Title %} | Successful Order{% endblock %}
+
+{% block content%}
+<div class="container">
+    <p class="">Your Order is complete. An Email has been sent to you containing the order details.</p>
+    <h6>Order Summary |Order number: {{order.order_number}}</h6>
+    <div class="card">
+        {% for item in ordered_items %}
+            <div class="container">
+                <div class="row w-100">
+                    <div class="card mt-2">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{item.product.image_url}}" alt="{{item.product.title}}" class="img-fluid w-25 rounded-start">
+                            </div>
+                            <div class="col-md-8">
+                                <h6 class="card-title">{{item.product.title}}</h6>
+                                <p class="card-text">Quantity:<small class="text-muted"></small> {{item.quantity}}</small></p>
+                                <p class="card-text">Price: <small class="text-muted">£{{item.product.price}}</small></p>                            </div>
+                                    
+                        </div>
+                    </div>
+                </div>
+                <p class="">Total Cost: £{{order.payment_due}}</p>
+            </div>
+                
+                {% endfor %}
+    </div>
+
+
+
+</div>
+
+{% endblock %}
