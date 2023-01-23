@@ -222,12 +222,8 @@ def createProduct(request):
     return render(request, 'addProduct.html', context)
 
 @staff_required(login_url="/accounts/login")
-def selectProduct(request, product_id):
-    products = Product.objects.all()
-
-    if request.method == 'POST':
-        
-        return (editProduct(request, product_id))
+def selectProduct(request):
+    products = Product.objects.all() 
     context={
     'products':products
 }
@@ -236,28 +232,45 @@ def selectProduct(request, product_id):
 
 @staff_required(login_url="/accounts/login")
 def editProduct(request, product_id):
-    product = get_object_or_404(Product, pk = product_id)
-    all_categories = Category.objects.all()
-    parent_categories = CategoryParent.objects.all()
-    form = editProductForm(instance=product)
-
     if request.method == 'POST':
-        edits = editProductForm(request.POST, instance=product)
-        
-        if edits.is_valid():
-            edits.save()
-            messages.success(request, 'Product Changed')
-        else:
-            messages.warning(request,'Form Not valid')
-            return redirect(reverse('editProduct'))
-
-    context={
-        'product':product,
-        'categories':all_categories,
-        'parent_categories':parent_categories,
-        'form':form
-    }
-    return render(request,'editProduct.html',context)
+        if 'title' in request.POST:
+            product = get_object_or_404(Product, pk = product_id)
+            edits = editProductForm(request.POST, instance=product)
+            if edits.is_valid():
+                edits.save()
+                print(product)
+                print('saved')
+                messages.success(request, 'Product Changed')
+                return redirect(reverse('admin'))
+            else:
+                messages.warning(request,'Form Not valid')
+                return redirect(reverse('editProduct'))
+        elif 'product' in request.POST:
+            product_id = request.POST['product']
+            product = get_object_or_404(Product, pk = product_id)
+            all_categories = Category.objects.all()
+            parent_categories = CategoryParent.objects.all()
+            form = editProductForm(instance=product)
+            context={
+            'product':product,
+            'categories':all_categories,
+            'parent_categories':parent_categories,
+            'form':form
+            }
+            return render(request,'editProduct.html',context)
+    else:   
+        product = get_object_or_404(Product, pk = product_id)
+        all_categories = Category.objects.all()
+        parent_categories = CategoryParent.objects.all()
+        form = editProductForm(instance=product)
+        context={
+            'product':product,
+            'categories':all_categories,
+            'parent_categories':parent_categories,
+            'form':form
+            }
+        return render(request,'editProduct.html',context)
+    return redirect(reverse('products'))
 @staff_required(login_url="/accounts/login")
 def deleteProduct(request,product_id):
     product = get_object_or_404(Product, pk = product_id)
