@@ -4,7 +4,7 @@ from django.forms import ModelForm, Textarea, FileField
 class editProductForm(ModelForm):
     class Meta:
         model = Product
-        fields =['title','brand','sku','price','image_url', 'image_file','category','description','average_rating','reviews_count','has_sizes']
+        fields =['title','brand','sku','price','image_url','category','description','average_rating','reviews_count','has_sizes']
         widgets = {
             'description': Textarea(attrs={'cols': 80, 'rows': 15}),
             'title':Textarea(attrs={'cols': 40, 'rows': 1}),

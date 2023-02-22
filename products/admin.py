@@ -6,6 +6,9 @@ class reviewInline(admin.TabularInline):
     model = review
 class productAdmin(admin.ModelAdmin):
     inlines = (reviewInline,)
+    readonly_fields = ('id',)
+    list_display =('id','title')
+
 
 class categoryInline(admin.TabularInline):
     model = Category    

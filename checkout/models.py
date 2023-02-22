@@ -1,7 +1,6 @@
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
-from products.models import Product
 from django.contrib.auth.models import User
 
 import uuid
@@ -10,7 +9,7 @@ import uuid
 
 class order(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.DO_NOTHING)
-    order_number=models.CharField(max_length=64, null=False, editable=False)
+    order_number=models.UUIDField(default=uuid.uuid4,editable=False, max_length=100)
     full_name=models.CharField(max_length=50, null=False, blank=False)
     email=models.CharField(max_length=64, null=False)
     phone_number=models.CharField(max_length=11, null=False)
@@ -26,25 +25,19 @@ class order(models.Model):
     payment_due=models.DecimalField(max_digits=11, decimal_places=2 ,null=False, default=0)
     payed=models.BooleanField(default=False)
     
-    def _generate_order_number(self):
-        return uuid.uuid4().hex.upper()
+   
     
     def update_total(self):
         self.order_total = self.orderItem.aggregate(Sum('orderitem_total'))['orderitem_total__sum']
         self.payment_due= self.delivery_cost + self.order_total
         self.save()
-    
-    def save(self,*args, **kwarg ):
-        if not self.order_number:
-            self.order_number = self._generate_order_number()
-        super().save()
+
 
 class orderItem(models.Model):
-    order = models.ForeignKey(order, null=False, blank=False, on_delete=models.CASCADE, related_name='orderItem')
-    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
+    order = models.ForeignKey(order, null=False, blank=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     orderitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-    
+    product = models.ForeignKey('products.Product', null=False, on_delete=models.CASCADE)
     def save(self, *args, **kwargs):
         self.orderitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
