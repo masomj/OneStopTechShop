@@ -42,6 +42,9 @@ def checkout(request):
         except:
             context ={
         }
+    else:
+           context ={
+        }
     if request.method == 'POST':
         bag = request.session.get('bag',{})
        
@@ -64,6 +67,8 @@ def checkout(request):
             elif request.POST['order_details'] == 'false':
                 
                 request.session['order_details'] = 'false'
+        else: 
+            request.session['order_details'] = 'false'
             
         if request.user.is_authenticated:
             order_details.user = request.user
