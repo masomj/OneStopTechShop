@@ -33,14 +33,14 @@ def completedCheckout(request, order_id):
 def checkout(request):    
     
     if request.user.is_authenticated:
-        logged_in_user = request.user.id
-        userObj = get_object_or_404(User, pk=logged_in_user)
-        userdetails = userDetails.objects.get(user_id=userObj)
-        context ={
-        'userdetails':userdetails
-        }
-    else:
-        context ={
+        try:
+            logged_in_user = request.user.id
+            userdetails = userDetails.objects.get(user_id=logged_in_user)
+            context ={
+            'userdetails':userdetails
+            }
+        except:
+            context ={
         }
     if request.method == 'POST':
         bag = request.session.get('bag',{})
